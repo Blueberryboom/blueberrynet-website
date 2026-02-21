@@ -1,70 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Blueberry Network</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blueberry Network</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="navbar">
-    <div class="logo">Blueberry<span>Network</span></div>
-    <nav>
-        <a href="#">Features</a>
-        <a href="#">About</a>
-        <a href="#" class="btn-nav">Join Discord</a>
+<header class="header">
+  <div class="container nav">
+
+    <div class="logo">Blueberry Network</div>
+
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Nav Links -->
+    <nav class="nav-links" id="navLinks">
+      <a href="#">Features</a>
+      <a href="#">Servers</a>
+      <a href="#">Discord</a>
+      <a href="#" class="btn-nav">Play</a>
     </nav>
+
+  </div>
 </header>
 
 <section class="hero">
-    <div class="hero-content">
-        <h1>
-            The most exciting<br>
-            Minecraft Network<br>
-            <span>Welcome Home</span>
-        </h1>
+  <div class="container hero-wrapper">
 
-        <p>
-            Join Blueberry Network — Survival, Events, PvP and more.
-            Compete. Build. Connect.
-        </p>
+    <div class="hero-text">
+    <h1>
+        Your 
+        <span class="gradient-group">
+        local, friendily
+        </span>
+        Minecraft Network.
+    </h1>
+    <p>
+        A small community of fellow Minecraft players, hosting a variety of gamemodes and events. We'd love to have you join us!
+    </p>
 
-        <div class="hero-buttons">
-            <a href="#" class="btn-primary">Play Now</a>
-            <a href="#" class="btn-secondary">See Features</a>
-        </div>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">Start Playing</a>
+        <a href="#" class="btn-secondary">Join Discord</a>
+      </div>
     </div>
 
-    <div class="hero-visual">
-        <div class="visual-card">
-            <!-- Replace with real image later -->
-            <img src="your-image.png" alt="">
-        </div>
+    <div class="hero-image">
+      <img src="hero-minecraft.png" alt="Minecraft Server Preview">
     </div>
+
+  </div>
 </section>
 
-<section class="features">
-    <h2>Our Features</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h3>Fast Servers</h3>
-            <p>Optimized performance with zero lag spikes.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Custom Plugins</h3>
-            <p>Unique gameplay mechanics you won't find elsewhere.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Events & Rewards</h3>
-            <p>Daily competitions and community prizes.</p>
-        </div>
-    </div>
+<section class="features container">
+  <div class="feature">
+    <h3>⚡ Custom Plugins</h3>
+    <p>Unique gameplay built in-house.</p>
+  </div>
+  <div class="feature">
+    <h3>🏆 Competitive Events</h3>
+    <p>Seasonal tournaments & rewards.</p>
+  </div>
+  <div class="feature">
+    <h3>💬 Active Community</h3>
+    <p>Join our Discord and hang out.</p>
+  </div>
 </section>
 
 <footer>
-    © 2026 Blueberry Network. Not affiliated with Mojang or Microsoft.
+  © 2026 Blueberry Network
 </footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('open');
+  });
+</script>
+
 </body>
 </html>
