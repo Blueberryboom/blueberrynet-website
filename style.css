@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #0b1020;
-    color: #fff;
+    background: radial-gradient(circle at 20% 20%, #1c2ef0, #0c1360 60%);
+    color: #ffffff;
     overflow-x: hidden;
 }
 
@@ -21,7 +21,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: transparent;
+    backdrop-filter: blur(10px);
+    background: rgba(10, 15, 60, 0.4);
     z-index: 1000;
 }
 
@@ -36,27 +37,27 @@ body {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #7c5cff, #5f9cff);
+    background: linear-gradient(135deg, #1624C7, #DC7633);
     margin-right: 10px;
 }
 
 .navbar nav a {
     margin-left: 30px;
     text-decoration: none;
-    color: #cfcfcf;
-    font-weight: 500;
+    color: #ffffffcc;
     transition: 0.3s;
 }
 
 .navbar nav a:hover {
-    color: #fff;
+    color: #ffffff;
 }
 
 .btn-nav {
     padding: 8px 18px;
-    border-radius: 8px;
-    background: linear-gradient(90deg, #7c5cff, #5f9cff);
-    color: #fff !important;
+    border-radius: 10px;
+    background: #DC7633;
+    color: white !important;
+    font-weight: 600;
 }
 
 /* HERO */
@@ -66,18 +67,30 @@ body {
     display: flex;
     align-items: center;
     padding: 0 8%;
-    background: radial-gradient(circle at 20% 20%, #1a1f4a, #0b1020 60%);
 }
 
 .hero-left {
     flex: 1;
-    max-width: 600px;
+    animation: floatUp 1.2s ease forwards;
 }
 
 .hero-right {
     flex: 1;
     display: flex;
     justify-content: center;
+    animation: floatUp 1.6s ease forwards;
+}
+
+/* Floating animation */
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero h1 {
@@ -87,20 +100,22 @@ body {
 }
 
 .hero h1 span {
-    background: linear-gradient(90deg, #7c5cff, #5f9cff);
+    background: linear-gradient(90deg, #ffffff, #DC7633);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .hero p {
     margin: 25px 0 35px;
-    color: #b0b6d1;
     font-size: 1.1rem;
+    color: #e0e0ff;
 }
+
+/* BUTTONS */
 
 .hero-buttons a {
     text-decoration: none;
-    padding: 14px 28px;
+    padding: 14px 30px;
     border-radius: 12px;
     font-weight: 600;
     margin-right: 15px;
@@ -108,30 +123,40 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(90deg, #7c5cff, #5f9cff);
+    background: #DC7633;
     color: white;
-    box-shadow: 0 10px 25px rgba(124, 92, 255, 0.4);
+    box-shadow: 0 10px 25px rgba(220, 118, 51, 0.5);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .btn-secondary {
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #ddd;
+    border: 1px solid #ffffff44;
+    color: white;
 }
 
 .btn-secondary:hover {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.08);
 }
 
-.hero-visual {
-    width: 350px;
-    height: 350px;
+/* HERO IMAGE AREA */
+
+.hero-image {
+    width: 380px;
+    height: 380px;
     border-radius: 30px;
-    background: linear-gradient(135deg, #1f2555, #12162c);
-    box-shadow: 0 0 100px rgba(124, 92, 255, 0.3);
+    background: linear-gradient(145deg, #1624C7, #DC7633);
+    padding: 8px;
+    box-shadow: 0 0 80px rgba(22, 36, 199, 0.5);
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
 }
 
 /* TRUSTED */
@@ -139,38 +164,8 @@ body {
 .trusted {
     text-align: center;
     padding: 60px 8%;
-    color: #888fb5;
+    color: #ffffffaa;
     font-size: 1rem;
-}
-
-/* FEATURES */
-
-.features {
-    padding: 100px 8%;
-    text-align: center;
-}
-
-.features h2 {
-    font-size: 2.2rem;
-    margin-bottom: 60px;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-}
-
-.feature-card {
-    background: #12162c;
-    padding: 35px;
-    border-radius: 18px;
-    transition: 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    background: #1a1f4a;
 }
 
 /* FOOTER */
@@ -178,5 +173,6 @@ body {
 .footer {
     text-align: center;
     padding: 40px;
-    color: #666a8f;
+    font-size: 0.9rem;
+    color: #ffffff88;
 }
