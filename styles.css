@@ -344,3 +344,29 @@ footer {
     transform: translateY(0);
   }
 }
+
+/* ========================
+   REDIRECT PAGE STYLES
+======================== */
+
+.redirect-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.redirect-wrapper {
+  width: 100%;
+}
+
+.redirect-content {
+  animation: floatInTop 0.8s ease forwards;
+}
+
+.redirect-content p {
+  color: var(--text-muted);
+  margin: 1.5rem 0 2rem;
+  font-size: 1.1rem;
+}
