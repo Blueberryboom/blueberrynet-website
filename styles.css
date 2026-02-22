@@ -120,7 +120,7 @@ body {
 
   background: 
     linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)),
-    url("https://raw.githubusercontent.com/Blueberryboom/blueberrynet-website/refs/heads/main/assets/hero-img.png") center/cover no-repeat;
+    url("https://cdn.discordapp.com/attachments/1468298848521818255/1475139526841073855/hero-img.png?ex=699c663d&is=699b14bd&hm=4077c41de4f1d6a08b196613ec38d3ffe20770658be05111d0ada48b1465f5be&") center/cover no-repeat;
 
   padding: 0;
 }
