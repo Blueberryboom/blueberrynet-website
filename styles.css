@@ -7,7 +7,7 @@
   --text: #ffffff;
   --text-muted: #94a3b8;
   --primary-gradient: linear-gradient(90deg, #6366f1, #8b5cf6);
-  --radius: 20px;
+  --radius: 6px;
   --transition: 0.3s ease;
   --max-width: 1200px;
 }
@@ -46,6 +46,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.navbar {
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-links {
+  z-index: 1000;
 }
 
 .logo {
@@ -119,7 +128,7 @@ body {
   position: relative;
 
   background: 
-    linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)),
+    linear-gradient(rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.8)),
     url("https://github.com/Blueberryboom/blueberrynet-website/blob/main/assets/hero-img.png?raw=true") center/cover no-repeat;
 
   padding: 0;
@@ -179,6 +188,70 @@ body {
 
 .btn-secondary:hover {
   background: var(--bg-light);
+}
+
+/* ========================
+   STATS STRIP
+======================== */
+
+.stats-strip {
+  background: var(--bg-light);
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.stats-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat {
+  flex: 1;
+  position: relative;
+}
+
+.stat h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat p {
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* Subtle vertical dividers */
+.stat:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+  .stats-wrapper {
+    flex-direction: column;
+  }
+
+  .stat:not(:last-child)::after {
+    display: none;
+  }
+
 }
 
 /* ========================
