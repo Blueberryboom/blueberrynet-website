@@ -190,9 +190,9 @@ function closePopup() {
 }
 
 function generate() {
-  const min = parseInt(minInput.value);
-  const max = parseInt(maxInput.value);
-  const alwaysThree = alwaysThreeInput.checked;
+  const min = parseInt(document.getElementById("min").value);
+  const max = parseInt(document.getElementById("max").value);
+  const alwaysThree = document.getElementById("alwaysThree").checked;
   const result = document.getElementById("result");
 
   if (alwaysThree) {
@@ -205,7 +205,12 @@ function generate() {
     return;
   }
 
-  let final = Math.floor(Math.random() * (max - min + 1)) + min;
+  if (min > max) {
+    result.textContent = "Min > Max?";
+    return;
+  }
+
+  const final = Math.floor(Math.random() * (max - min + 1)) + min;
   animateNumber(final);
 }
 
