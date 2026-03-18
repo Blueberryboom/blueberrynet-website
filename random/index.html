@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random | Blueberry Network</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-light: #1e293b;
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+      --gradient: linear-gradient(90deg, #6366f1, #8b5cf6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* Top right brand */
+    .brand {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-weight: 800;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    /* Layout */
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .card {
+      background: var(--bg-light);
+      padding: 2.5rem;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .inputs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      flex: 1;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: none;
+      background: #0f172a;
+      color: white;
+    }
+
+    button {
+      background: var(--gradient);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .result {
+      font-size: 3rem;
+      margin-top: 2rem;
+      font-weight: 800;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .popup-box {
+      background: var(--bg-light);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    /* DVD bounce text */
+    .dvd {
+      position: fixed;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .inputs {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="brand" onclick="location.href='/'">Blueberry Network</div>
+
+<div class="wrapper">
+  <div class="card">
+    <h1>Random Generator</h1>
+    <p>Definitely not rigged. Probably.</p>
+
+    <div class="inputs">
+      <input type="number" id="min" placeholder="Min">
+      <input type="number" id="max" placeholder="Max">
+    </div>
+
+    <label>
+      <input type="checkbox" id="alwaysThree"> Always choose 3 😏
+    </label>
+
+    <br>
+    <button onclick="generate()">Generate</button>
+
+    <div class="result" id="result">—</div>
+  </div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h2>🍰 Amber Bakery Sale!</h2>
+    <p>Get 67% off ALL cakes today only!</p>
+    <button onclick="closePopup()">Nice</button>
+  </div>
+</div>
+
+<!-- DVD Text -->
+<div class="dvd" id="dvd">Sponsored by Harry Insurance</div>
+
+<div class="footer">
+  © Blueberry Network • support us on buymeacoffee.com/blueberryboom
+</div>
+
+<script>
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+function generate() {
+  const min = parseInt(minInput.value);
+  const max = parseInt(maxInput.value);
+  const alwaysThree = alwaysThreeInput.checked;
+  const result = document.getElementById("result");
+
+  if (alwaysThree) {
+    animateNumber(3);
+    return;
+  }
+
+  if (isNaN(min) || isNaN(max)) {
+    result.textContent = "Invalid";
+    return;
+  }
+
+  let final = Math.floor(Math.random() * (max - min + 1)) + min;
+  animateNumber(final);
+}
+
+/* Rolling animation */
+function animateNumber(final) {
+  let count = 0;
+  const result = document.getElementById("result");
+
+  const interval = setInterval(() => {
+    result.textContent = Math.floor(Math.random() * 100);
+    count++;
+
+    if (count > 15) {
+      clearInterval(interval);
+      result.textContent = final;
+    }
+  }, 50);
+}
+
+/* DVD bounce */
+const dvd = document.getElementById("dvd");
+let x = 100, y = 100;
+let dx = 2, dy = 2;
+
+function moveDVD() {
+  x += dx;
+  y += dy;
+
+  if (x + dvd.offsetWidth > window.innerWidth || x < 0) dx *= -1;
+  if (y + dvd.offsetHeight > window.innerHeight || y < 0) dy *= -1;
+
+  dvd.style.left = x + "px";
+  dvd.style.top = y + "px";
+
+  requestAnimationFrame(moveDVD);
+}
+
+moveDVD();
+</script>
+
+</body>
+</html>
