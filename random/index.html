@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random | Blueberry Network</title>
+  <title>Random</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -27,6 +27,20 @@
       background: var(--bg);
       color: var(--text);
       overflow: hidden;
+    }
+
+    /* 🌈 CURSE MODE */
+    body.cursed {
+      animation: rgbDisco 2s linear infinite;
+    }
+
+    @keyframes rgbDisco {
+      0% { background: red; }
+      20% { background: orange; }
+      40% { background: yellow; }
+      60% { background: green; }
+      80% { background: blue; }
+      100% { background: purple; }
     }
 
     /* Top right brand */
@@ -57,9 +71,7 @@
       max-width: 500px;
     }
 
-    h1 {
-      margin-bottom: 0.5rem;
-    }
+    h1 { margin-bottom: 0.5rem; }
 
     p {
       color: var(--text-muted);
@@ -117,12 +129,22 @@
       max-width: 400px;
     }
 
-    /* DVD bounce text */
+    /* DVD */
     .dvd {
       position: fixed;
       font-size: 0.9rem;
       color: var(--text-muted);
       pointer-events: none;
+    }
+
+    .dvd.clone {
+      opacity: 0.7;
+    }
+
+    /* 🕺 bouncing UI */
+    .bounce {
+      position: fixed !important;
+      z-index: 999;
     }
 
     /* Footer */
@@ -135,11 +157,8 @@
       color: var(--text-muted);
     }
 
-    /* Mobile */
     @media (max-width: 600px) {
-      .inputs {
-        flex-direction: column;
-      }
+      .inputs { flex-direction: column; }
     }
   </style>
 </head>
@@ -149,20 +168,21 @@
 
 <div class="wrapper">
   <div class="card">
-    <h1>Random Generator</h1>
-    <p>Definitely not rigged. Probably.</p>
+    <h1>Harry Numba Generator</h1>
+    <p>Maybe not rigged :D</p>
 
     <div class="inputs">
       <input type="number" id="min" placeholder="Min">
       <input type="number" id="max" placeholder="Max">
     </div>
 
-    <label>
-      <input type="checkbox" id="alwaysThree"> Always choose 3 😏
+    <!-- 😈 CURSE -->
+    <label id="curseLabel">
+      <input type="checkbox" id="curse"> Enable Curse 😈
     </label>
 
     <br>
-    <button onclick="generate()">Generate</button>
+    <button id="generateBtn" onclick="generate()">Generate</button>
 
     <div class="result" id="result">—</div>
   </div>
@@ -171,17 +191,18 @@
 <!-- Popup -->
 <div class="popup" id="popup">
   <div class="popup-box">
-    <h2>🍰 Amber Bakery Sale!</h2>
+    <h2>Amber Bakery Sale!</h2>
     <p>Get 67% off ALL cakes today only!</p>
-    <button onclick="closePopup()">Nice</button>
+    <p>BUY CAKES OR ELSE HARRY WILL BE VERY SAD :(</p>
+    <button onclick="closePopup()">um ok...</button>
   </div>
 </div>
 
-<!-- DVD Text -->
+<!-- DVD -->
 <div class="dvd" id="dvd">Sponsored by Harry Insurance</div>
 
 <div class="footer">
-  © Blueberry Network • support us on buymeacoffee.com/blueberryboom
+  © Blueberry Network • Support us at buymeacoffee.com/blueberryboom
 </div>
 
 <script>
@@ -189,16 +210,12 @@ function closePopup() {
   document.getElementById("popup").style.display = "none";
 }
 
+/* 🎲 Generate */
 function generate() {
   const min = parseInt(document.getElementById("min").value);
   const max = parseInt(document.getElementById("max").value);
-  const alwaysThree = document.getElementById("alwaysThree").checked;
+  const cursed = document.getElementById("curse").checked;
   const result = document.getElementById("result");
-
-  if (alwaysThree) {
-    animateNumber(3);
-    return;
-  }
 
   if (isNaN(min) || isNaN(max)) {
     result.textContent = "Invalid";
@@ -210,14 +227,20 @@ function generate() {
     return;
   }
 
-  const final = Math.floor(Math.random() * (max - min + 1)) + min;
+  let final = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  // 😈 bias toward 3
+  if (cursed && Math.random() < 0.4) {
+    final = 3;
+  }
+
   animateNumber(final);
 }
 
-/* Rolling animation */
+/* 🎲 Animation */
 function animateNumber(final) {
-  let count = 0;
   const result = document.getElementById("result");
+  let count = 0;
 
   const interval = setInterval(() => {
     result.textContent = Math.floor(Math.random() * 100);
@@ -230,25 +253,82 @@ function animateNumber(final) {
   }, 50);
 }
 
-/* DVD bounce */
+/* 💿 DVD SYSTEM */
 const dvd = document.getElementById("dvd");
-let x = 100, y = 100;
-let dx = 2, dy = 2;
+let dvds = [dvd];
+let velocities = [];
 
-function moveDVD() {
-  x += dx;
-  y += dy;
-
-  if (x + dvd.offsetWidth > window.innerWidth || x < 0) dx *= -1;
-  if (y + dvd.offsetHeight > window.innerHeight || y < 0) dy *= -1;
-
-  dvd.style.left = x + "px";
-  dvd.style.top = y + "px";
-
-  requestAnimationFrame(moveDVD);
+function initDVD(el) {
+  return {
+    el,
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    dx: (Math.random() * 2 + 1),
+    dy: (Math.random() * 2 + 1)
+  };
 }
 
-moveDVD();
+velocities.push(initDVD(dvd));
+
+function moveDVDs() {
+  velocities.forEach(obj => {
+    obj.x += obj.dx;
+    obj.y += obj.dy;
+
+    if (obj.x + obj.el.offsetWidth > window.innerWidth || obj.x < 0) obj.dx *= -1;
+    if (obj.y + obj.el.offsetHeight > window.innerHeight || obj.y < 0) obj.dy *= -1;
+
+    obj.el.style.left = obj.x + "px";
+    obj.el.style.top = obj.y + "px";
+  });
+
+  requestAnimationFrame(moveDVDs);
+}
+moveDVDs();
+
+/* 😈 CURSE MODE */
+document.getElementById("curse").addEventListener("change", function () {
+  if (this.checked) {
+    document.body.classList.add("cursed");
+
+    // spawn 50 DVDs
+    for (let i = 0; i < 50; i++) {
+      const clone = dvd.cloneNode(true);
+      clone.classList.add("clone");
+      document.body.appendChild(clone);
+
+      velocities.push(initDVD(clone));
+    }
+
+    // bounce button + label
+    chaosMove(document.getElementById("generateBtn"));
+    chaosMove(document.getElementById("curseLabel"));
+  }
+});
+
+/* 🕺 chaos movement */
+function chaosMove(el) {
+  el.classList.add("bounce");
+
+  let x = Math.random() * window.innerWidth;
+  let y = Math.random() * window.innerHeight;
+  let dx = 3, dy = 3;
+
+  function move() {
+    x += dx;
+    y += dy;
+
+    if (x + el.offsetWidth > window.innerWidth || x < 0) dx *= -1;
+    if (y + el.offsetHeight > window.innerHeight || y < 0) dy *= -1;
+
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+
+    requestAnimationFrame(move);
+  }
+
+  move();
+}
 </script>
 
 </body>
