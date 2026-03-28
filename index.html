@@ -12,7 +12,6 @@
 
 <header class="header">
   <div class="container nav">
-
     <div class="logo">Blueberry Network</div>
 
     <button class="hamburger" id="hamburger">
@@ -26,7 +25,6 @@
       <a href="#">Status</a>
       <a href="#" class="btn-nav">Play</a>
     </nav>
-
   </div>
 </header>
 
@@ -70,43 +68,45 @@
 </section>
 
 <!-- SERVICES -->
-<section class="services">
+<section class="section">
   <div class="container">
     <h2 class="section-title">Our Services</h2>
 
-    <div class="services-grid">
-      <div class="service">
+    <div class="card-grid">
+
+      <div class="card">
         <h3>Minecraft Hosting</h3>
-        <p>Fast, reliable servers.</p>
+        <p>Lag-free servers with high performance.</p>
         <h4>£5/mo</h4>
         <a href="#" class="btn-primary">Start</a>
       </div>
 
-      <div class="service highlight">
+      <div class="card highlight">
         <h3>Full Network Setup</h3>
-        <p>Everything you need.</p>
+        <p>Everything you need to launch your server.</p>
         <h4>£15/mo</h4>
         <a href="#" class="btn-primary">Best Value</a>
       </div>
 
-      <div class="service">
+      <div class="card">
         <h3>Discord Bots</h3>
-        <p>Custom automation.</p>
+        <p>Automation & custom features.</p>
         <h4>£3/mo</h4>
         <a href="#" class="btn-primary">Start</a>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
+<!-- TESTIMONIALS (NEW STYLE) -->
+<section class="section">
   <div class="container">
     <h2 class="section-title">What communities think</h2>
 
-    <div class="testimonial-track">
+    <div class="card-grid">
 
-      <div class="testimonial-card">
+      <div class="card">
         <div class="profile">
           <img src="https://cdn.discordapp.com/embed/avatars/0.png">
           <div>
@@ -115,14 +115,16 @@
             <small data-members="1234">Loading...</small>
           </div>
         </div>
-        <p class="review">"Amazing performance and support."</p>
+
+        <p>"Blueberry Network completely transformed our server."</p>
+
         <div class="links">
           <a href="#">Discord</a>
           <a href="#">Website</a>
         </div>
       </div>
 
-      <div class="testimonial-card">
+      <div class="card">
         <div class="profile">
           <img src="https://cdn.discordapp.com/embed/avatars/1.png">
           <div>
@@ -131,10 +133,29 @@
             <small data-members="842">Loading...</small>
           </div>
         </div>
-        <p class="review">"Best hosting we've used."</p>
+
+        <p>"Best hosting we've used. Performance is incredible."</p>
+
         <div class="links">
           <a href="#">Twitter</a>
           <a href="#">YouTube</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="profile">
+          <img src="https://cdn.discordapp.com/embed/avatars/2.png">
+          <div>
+            <strong>BlockWorld</strong>
+            <span>Events Server</span>
+            <small data-members="2200">Loading...</small>
+          </div>
+        </div>
+
+        <p>"Players love it. Events are amazing!"</p>
+
+        <div class="links">
+          <a href="#">Discord</a>
         </div>
       </div>
 
@@ -143,10 +164,14 @@
 </section>
 
 <!-- CONTACT -->
-<section class="contact">
+<section class="section">
   <div class="container contact-box">
-    <h2>Let’s build something <span class="gradient-text">great</span></h2>
-    <p>Join our Discord or get in touch.</p>
+    <h2>
+      Let’s build something 
+      <span class="gradient-text">amazing</span> together.
+    </h2>
+
+    <p>Open for collaborations and communities.</p>
 
     <div class="contact-buttons">
       <a href="/discord" class="btn-primary">Join Discord</a>
@@ -165,7 +190,7 @@ document.getElementById('hamburger').onclick = () => {
   document.getElementById('navLinks').classList.toggle('active');
 };
 
-/* STATS ANIMATION */
+/* COUNT-UP */
 document.querySelectorAll(".stat h2").forEach(el => {
   let target = +el.dataset.target;
   let suffix = el.dataset.suffix || "+";
@@ -180,14 +205,12 @@ document.querySelectorAll(".stat h2").forEach(el => {
       el.textContent = target + suffix;
     }
   };
-
   update();
 });
 
-/* FAKE MEMBER COUNTS (replace later with API) */
+/* MEMBER COUNTS */
 document.querySelectorAll("[data-members]").forEach(el => {
-  let num = el.dataset.members;
-  el.textContent = num + " members";
+  el.textContent = el.dataset.members + " members";
 });
 </script>
 
