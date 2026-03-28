@@ -16,13 +16,11 @@
     <div class="logo">Blueberry Network</div>
 
     <button class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
 
     <nav class="nav-links" id="navLinks">
-      <a href="#">About Us</a>
+      <a href="#">About</a>
       <a href="#">Rules</a>
       <a href="#">Team</a>
       <a href="#">Status</a>
@@ -32,17 +30,14 @@
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="container hero-wrapper">
     <div class="hero-text">
       <h1>
-        Your 
-        <span class="gradient-group">local, friendily</span>
-        Minecraft Network.
+        Your <span class="gradient-group">local, friendily</span> Minecraft Network.
       </h1>
-      <p>
-        A small community of fellow Minecraft players, hosting a variety of gamemodes and events.
-      </p>
+      <p>Join a growing community of players and creators.</p>
 
       <div class="hero-buttons">
         <a href="#" class="btn-primary">Start Playing</a>
@@ -58,62 +53,104 @@
 
     <div class="stat">
       <h2 data-target="30">0</h2>
-      <p>Communities Using Our Network</p>
+      <p>Communities</p>
     </div>
 
     <div class="stat">
       <h2 data-target="2">0</h2>
-      <p>Custom Gamemodes</p>
+      <p>Gamemodes</p>
     </div>
 
     <div class="stat">
       <h2 data-target="75" data-suffix="%">0</h2>
-      <p>Guaranteed Uptime</p>
+      <p>Uptime</p>
     </div>
 
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+
+    <div class="services-grid">
+      <div class="service">
+        <h3>Minecraft Hosting</h3>
+        <p>Fast, reliable servers.</p>
+        <h4>£5/mo</h4>
+        <a href="#" class="btn-primary">Start</a>
+      </div>
+
+      <div class="service highlight">
+        <h3>Full Network Setup</h3>
+        <p>Everything you need.</p>
+        <h4>£15/mo</h4>
+        <a href="#" class="btn-primary">Best Value</a>
+      </div>
+
+      <div class="service">
+        <h3>Discord Bots</h3>
+        <p>Custom automation.</p>
+        <h4>£3/mo</h4>
+        <a href="#" class="btn-primary">Start</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="container">
-    <h2 class="section-title">Loved by communities</h2>
+    <h2 class="section-title">What communities think</h2>
 
     <div class="testimonial-track">
 
-      <div class="testimonial">
-        <p>"Blueberry Network completely transformed our server."</p>
-        <h4>— Pixel SMP</h4>
+      <div class="testimonial-card">
+        <div class="profile">
+          <img src="https://cdn.discordapp.com/embed/avatars/0.png">
+          <div>
+            <strong>Pixel SMP</strong>
+            <span>Community Server</span>
+            <small data-members="1234">Loading...</small>
+          </div>
+        </div>
+        <p class="review">"Amazing performance and support."</p>
         <div class="links">
           <a href="#">Discord</a>
           <a href="#">Website</a>
         </div>
       </div>
 
-      <div class="testimonial">
-        <p>"Insanely smooth performance and great events."</p>
-        <h4>— CraftHub</h4>
+      <div class="testimonial-card">
+        <div class="profile">
+          <img src="https://cdn.discordapp.com/embed/avatars/1.png">
+          <div>
+            <strong>CraftHub</strong>
+            <span>Gaming Community</span>
+            <small data-members="842">Loading...</small>
+          </div>
+        </div>
+        <p class="review">"Best hosting we've used."</p>
         <div class="links">
           <a href="#">Twitter</a>
           <a href="#">YouTube</a>
         </div>
       </div>
 
-      <div class="testimonial">
-        <p>"Players love it. Best decision we made."</p>
-        <h4>— BlockWorld</h4>
-        <div class="links">
-          <a href="#">Discord</a>
-          <a href="#">TikTok</a>
-        </div>
-      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- duplicate for smooth looping -->
-      <div class="testimonial">
-        <p>"Blueberry Network completely transformed our server."</p>
-        <h4>— Pixel SMP</h4>
-      </div>
+<!-- CONTACT -->
+<section class="contact">
+  <div class="container contact-box">
+    <h2>Let’s build something <span class="gradient-text">great</span></h2>
+    <p>Join our Discord or get in touch.</p>
 
+    <div class="contact-buttons">
+      <a href="/discord" class="btn-primary">Join Discord</a>
+      <a href="#" class="btn-secondary">Contact</a>
     </div>
   </div>
 </section>
@@ -123,46 +160,35 @@
 </footer>
 
 <script>
-/* Hamburger */
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
+/* NAV */
+document.getElementById('hamburger').onclick = () => {
+  document.getElementById('navLinks').classList.toggle('active');
+};
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  hamburger.classList.toggle('open');
+/* STATS ANIMATION */
+document.querySelectorAll(".stat h2").forEach(el => {
+  let target = +el.dataset.target;
+  let suffix = el.dataset.suffix || "+";
+  let count = 0;
+
+  let update = () => {
+    count += target / 50;
+    if (count < target) {
+      el.textContent = Math.floor(count) + suffix;
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = target + suffix;
+    }
+  };
+
+  update();
 });
 
-/* Count-up animation */
-const counters = document.querySelectorAll(".stat h2");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const target = +el.getAttribute("data-target");
-      const suffix = el.getAttribute("data-suffix") || "+";
-
-      let count = 0;
-      const speed = target / 50;
-
-      const update = () => {
-        count += speed;
-
-        if (count < target) {
-          el.textContent = Math.floor(count) + suffix;
-          requestAnimationFrame(update);
-        } else {
-          el.textContent = target + suffix;
-        }
-      };
-
-      update();
-      observer.unobserve(el);
-    }
-  });
-}, { threshold: 0.6 });
-
-counters.forEach(counter => observer.observe(counter));
+/* FAKE MEMBER COUNTS (replace later with API) */
+document.querySelectorAll("[data-members]").forEach(el => {
+  let num = el.dataset.members;
+  el.textContent = num + " members";
+});
 </script>
 
 </body>
