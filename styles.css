@@ -411,3 +411,58 @@ footer {
     transform: translateY(0);
   }
 }
+
+
+/* ========================
+   TESTIMONIALS
+======================== */
+
+.testimonials {
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 2rem;
+  animation: scrollTestimonials 25s linear infinite;
+}
+
+.testimonial {
+  min-width: 280px;
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.testimonial h4 {
+  margin-bottom: 1rem;
+}
+
+.links a {
+  color: var(--text-muted);
+  margin: 0 0.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.links a:hover {
+  color: white;
+}
+
+@keyframes scrollTestimonials {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
