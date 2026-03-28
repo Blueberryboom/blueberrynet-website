@@ -15,14 +15,12 @@
 
     <div class="logo">Blueberry Network</div>
 
-    <!-- Hamburger -->
     <button class="hamburger" id="hamburger">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <!-- Nav Links -->
     <nav class="nav-links" id="navLinks">
       <a href="#">About Us</a>
       <a href="#">Rules</a>
@@ -36,61 +34,87 @@
 
 <section class="hero">
   <div class="container hero-wrapper">
-
     <div class="hero-text">
-    <h1>
+      <h1>
         Your 
-        <span class="gradient-group">
-        local, friendily
-        </span>
+        <span class="gradient-group">local, friendily</span>
         Minecraft Network.
-    </h1>
-    <p>
-        A small community of fellow Minecraft players, hosting a variety of gamemodes and events. We'd love to have you join us!
-    </p>
+      </h1>
+      <p>
+        A small community of fellow Minecraft players, hosting a variety of gamemodes and events.
+      </p>
 
       <div class="hero-buttons">
         <a href="#" class="btn-primary">Start Playing</a>
         <a href="/discord" class="btn-secondary">Join Discord</a>
       </div>
     </div>
-
   </div>
 </section>
 
+<!-- STATS -->
 <section class="stats-strip">
   <div class="container stats-wrapper">
 
     <div class="stat">
-      <h2>30+</h2>
+      <h2 data-target="30">0</h2>
       <p>Communities Using Our Network</p>
     </div>
 
     <div class="stat">
-      <h2>2</h2>
+      <h2 data-target="2">0</h2>
       <p>Custom Gamemodes</p>
     </div>
 
     <div class="stat">
-      <h2>75%</h2>
+      <h2 data-target="75" data-suffix="%">0</h2>
       <p>Guaranteed Uptime</p>
     </div>
 
   </div>
 </section>
 
-<section class="features container">
-  <div class="feature">
-    <h3>⚡ COMING SOON</h3>
-    <p>COMING SOON</p>
-  </div>
-  <div class="feature">
-    <h3>🏆 COMING SOON</h3>
-    <p>COMING SOON</p>
-  </div>
-  <div class="feature">
-    <h3>💬 COMING SOON</h3>
-    <p>COMING SOON</p>
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Loved by communities</h2>
+
+    <div class="testimonial-track">
+
+      <div class="testimonial">
+        <p>"Blueberry Network completely transformed our server."</p>
+        <h4>— Pixel SMP</h4>
+        <div class="links">
+          <a href="#">Discord</a>
+          <a href="#">Website</a>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p>"Insanely smooth performance and great events."</p>
+        <h4>— CraftHub</h4>
+        <div class="links">
+          <a href="#">Twitter</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <p>"Players love it. Best decision we made."</p>
+        <h4>— BlockWorld</h4>
+        <div class="links">
+          <a href="#">Discord</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+
+      <!-- duplicate for smooth looping -->
+      <div class="testimonial">
+        <p>"Blueberry Network completely transformed our server."</p>
+        <h4>— Pixel SMP</h4>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -99,13 +123,46 @@
 </footer>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
+/* Hamburger */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
 
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('open');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  hamburger.classList.toggle('open');
+});
+
+/* Count-up animation */
+const counters = document.querySelectorAll(".stat h2");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = +el.getAttribute("data-target");
+      const suffix = el.getAttribute("data-suffix") || "+";
+
+      let count = 0;
+      const speed = target / 50;
+
+      const update = () => {
+        count += speed;
+
+        if (count < target) {
+          el.textContent = Math.floor(count) + suffix;
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target + suffix;
+        }
+      };
+
+      update();
+      observer.unobserve(el);
+    }
   });
+}, { threshold: 0.6 });
+
+counters.forEach(counter => observer.observe(counter));
 </script>
 
 </body>
