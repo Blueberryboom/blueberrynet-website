@@ -154,3 +154,103 @@ footer {
   padding: 2rem;
   color: var(--text-muted);
 }
+
+/* SECTION SPACING */
+.section {
+  padding: 5rem 0;
+}
+
+/* CARD GRID */
+.card-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 280px;
+  background: linear-gradient(145deg, #1e293b, #111827);
+  padding: 2rem;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* Highlight card */
+.card.highlight {
+  border: 1px solid rgba(255,255,255,0.1);
+  transform: scale(1.05);
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile span,
+.profile small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Links */
+.links {
+  margin-top: 1rem;
+}
+
+.links a {
+  color: var(--text-muted);
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: white;
+}
+
+/* CONTACT BOX (polished like screenshot) */
+.contact-box {
+  background: linear-gradient(135deg, #3b3f8c, #1d4ed8);
+  padding: 4rem 2rem;
+  border-radius: 24px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2.5rem;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons layout */
+.contact-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .card-grid {
+    flex-direction: column;
+  }
+}
