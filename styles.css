@@ -951,9 +951,7 @@ footer {
 }
 
 .owner-quote-section {
-	padding: 2rem 0;
-	background: transparent;
-	border: 0;
+	padding-top: 1.8rem;
 }
 
 .owner-quote-card {
@@ -962,7 +960,7 @@ footer {
 }
 
 .owner-quote-card h2 {
-	margin-bottom: 0.45rem;
+	margin-bottom: 0.5rem;
 }
 
 .owner-quote-card p {

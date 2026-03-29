@@ -3,9 +3,9 @@
   if (!profileRoot) return;
 
   profileRoot.innerHTML = `
-    <section class="hero team-landing-hero owner-hero-surface">
-      <div class="container hero-wrapper owner-hero-grid reveal">
-        <div class="hero-text owner-hero-copy">
+    <section class="section owner-hero-section">
+      <div class="container owner-hero-grid">
+        <div class="owner-hero-copy">
           <span class="status-strip">Owner</span>
           <h1>Meet Blueberryboom</h1>
           <p>
