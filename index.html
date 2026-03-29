@@ -19,10 +19,10 @@
     </button>
 
     <nav class="nav-links" id="navLinks">
-      <a href="#">About</a>
-      <a href="#">Rules</a>
-      <a href="#">Team</a>
-      <a href="#">Status</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
       <a href="#" class="btn-nav">Play</a>
     </nav>
   </div>
@@ -50,12 +50,12 @@
   <div class="container stats-wrapper">
 
     <div class="stat">
-      <h2 data-target="30">0</h2>
+      <h2 data-target="30" data-suffix="+">0</h2>
       <p>Communities</p>
     </div>
 
     <div class="stat">
-      <h2 data-target="2">0</h2>
+      <h2 data-target="2" data-suffix="+">0</h2>
       <p>Gamemodes</p>
     </div>
 
@@ -67,8 +67,32 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="container">
+    <h2 class="section-title">What we do best</h2>
+
+    <div class="card-grid">
+      <article class="card">
+        <h3>Network Engineering</h3>
+        <p>We build stable Minecraft ecosystems with reliable infrastructure, smooth gameplay loops, and scalable server architecture.</p>
+      </article>
+
+      <article class="card">
+        <h3>Community Tooling</h3>
+        <p>From Discord integrations to automation and moderation workflows, we make running your community easy and consistent.</p>
+      </article>
+
+      <article class="card">
+        <h3>Live Ops & Support</h3>
+        <p>We monitor performance, optimize uptime, and help communities launch events, updates, and seasonal content with confidence.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
-<section class="section services">
+<section class="section services" id="services">
   <div class="container">
     <h2 class="section-title">Our Services</h2>
 
@@ -76,48 +100,45 @@
 
       <div class="card">
         <h3>Minecraft Hosting</h3>
-        <p>Lag-free servers with high performance.</p>
-        <h4>COMING SOON</h4>
-        <a href="#" class="btn-primary">COMING SOON</a>
+        <p>Lag-free servers with high performance and dependable reliability.</p>
+        <a href="#" class="btn-primary">Start</a>
       </div>
 
       <div class="card highlight">
-        <h3>Minecraft Server</h3>
-        <p>Everything you need to launch your server.</p>
-        <h4>ANYONE WELCOME</h4>
-        <a href="#" class="btn-primary">Play</a>
+        <h3>Full Network Setup</h3>
+        <p>Everything you need to launch your server, community, and growth systems.</p>
+        <a href="#" class="btn-primary">Best Value</a>
       </div>
 
       <div class="card">
-        <h3>BBGames Discord Bot</h3>
-        <p>A unique discord bot that replaces your 6782 discord games bots with one!</p>
-        <h4>Free (£3/mo premium)</h4>
-        <a href="#" class="btn-primary">More info</a>
+        <h3>Discord Bots</h3>
+        <p>Automation and custom features that keep your staff workflows simple.</p>
+        <a href="#" class="btn-primary">Start</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS (NEW STYLE) -->
-<section class="section testimonials">
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="testimonials">
   <div class="container">
     <h2 class="section-title">What communities think</h2>
 
-    <div class="testimonials-marquee">
-      <div class="testimonials-track">
+    <div class="testimonials-marquee" id="testimonialsMarquee">
+      <div class="testimonials-track" id="testimonialsTrack">
 
         <div class="card">
           <div class="profile">
-            <img src="https://cdn.discordapp.com/embed/avatars/0.png">
+            <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Pixel SMP avatar">
             <div>
-              <strong>Blablabla</strong>
+              <strong>Pixel SMP</strong>
               <span>Community Server</span>
               <small data-members="1234">Loading...</small>
             </div>
           </div>
 
-          <p>"mmm... burger"</p>
+          <p>"Blueberry Network completely transformed our server."</p>
 
           <div class="links">
             <a href="#">Discord</a>
@@ -127,10 +148,10 @@
 
         <div class="card">
           <div class="profile">
-            <img src="https://cdn.discordapp.com/embed/avatars/1.png">
+            <img src="https://cdn.discordapp.com/embed/avatars/1.png" alt="CraftHub avatar">
             <div>
-              <strong>POTATO </strong>
-              <span>Minecraft Server</span>
+              <strong>CraftHub</strong>
+              <span>Gaming Community</span>
               <small data-members="842">Loading...</small>
             </div>
           </div>
@@ -145,15 +166,15 @@
 
         <div class="card">
           <div class="profile">
-            <img src="https://cdn.discordapp.com/embed/avatars/2.png">
+            <img src="https://cdn.discordapp.com/embed/avatars/2.png" alt="BlockWorld avatar">
             <div>
               <strong>BlockWorld</strong>
-              <span>67?</span>
+              <span>Events Server</span>
               <small data-members="2200">Loading...</small>
             </div>
           </div>
 
-          <p>"Cursed as hell"</p>
+          <p>"Players love it. Events are amazing!"</p>
 
           <div class="links">
             <a href="#">Discord</a>
@@ -161,17 +182,15 @@
         </div>
 
       </div>
-
-
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section contact-section">
+<section class="section contact-section" id="contact">
   <div class="container contact-box">
     <h2>
-      Let’s build something 
+      Let’s build something
       <span class="gradient-text">amazing</span> together.
     </h2>
 
@@ -181,6 +200,12 @@
       <a href="/discord" class="btn-primary">Join Discord</a>
       <a href="#" class="btn-secondary">Contact</a>
     </div>
+  </div>
+</section>
+
+<section class="bmc-section">
+  <div class="container bmc-wrap">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="blueberryboom" data-color="#FFDD00" data-emoji="☕" data-font="Inter" data-text="Buy us a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
   </div>
 </section>
 
@@ -194,27 +219,60 @@ document.getElementById('hamburger').onclick = () => {
   document.getElementById('navLinks').classList.toggle('active');
 };
 
-/* COUNT-UP */
-document.querySelectorAll(".stat h2").forEach(el => {
-  let target = +el.dataset.target;
-  let suffix = el.dataset.suffix || "+";
-  let count = 0;
+/* TESTIMONIAL LOOP (duplicates via JS so markup stays single-source) */
+(() => {
+  const marquee = document.getElementById('testimonialsMarquee');
+  const track = document.getElementById('testimonialsTrack');
+  if (!marquee || !track) return;
 
-  let update = () => {
-    count += target / 50;
-    if (count < target) {
-      el.textContent = Math.floor(count) + suffix;
-      requestAnimationFrame(update);
-    } else {
-      el.textContent = target + suffix;
-    }
+  const clone = track.cloneNode(true);
+  clone.id = '';
+  clone.setAttribute('aria-hidden', 'true');
+  marquee.appendChild(clone);
+})();
+
+/* COUNT-UP */
+(() => {
+  const stats = document.querySelectorAll('.stat h2');
+  if (!stats.length) return;
+
+  const animateCount = (el) => {
+    const target = Number(el.dataset.target || 0);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.floor(target * eased);
+      el.textContent = value + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = target + suffix;
+      }
+    };
+
+    requestAnimationFrame(tick);
   };
-  update();
-});
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.45 });
+
+  stats.forEach((el) => observer.observe(el));
+})();
 
 /* MEMBER COUNTS */
-document.querySelectorAll("[data-members]").forEach(el => {
-  el.textContent = el.dataset.members + " members";
+document.querySelectorAll('[data-members]').forEach(el => {
+  el.textContent = el.dataset.members + ' members';
 });
 </script>
 

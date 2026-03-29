@@ -472,6 +472,108 @@ body {
 	min-width: 170px;
 }
 
+
+
+.about .card {
+	min-height: 220px;
+}
+
+.bmc-section {
+	padding: 0.8rem 0 1rem;
+}
+
+.bmc-wrap {
+	display: flex;
+	justify-content: center;
+}
+
+.bmc-btn {
+	transform: scale(1.02);
+}
+
+/* ======================== DISCORD REDIRECT PAGE======================== */
+.modern-discord {
+	min-height: 100vh;
+	padding: 4rem 0;
+	display: flex;
+	align-items: center;
+}
+
+.redirect-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.redirect-card {
+	width: min(760px, 100%);
+	background: #16253b;
+	border-radius: 26px;
+	border: 1px solid rgba(255, 255, 255, 0.16);
+	box-shadow: 0 26px 44px rgba(5, 10, 25, 0.5);
+	padding: clamp(1.6rem, 4.2vw, 3rem);
+	text-align: center;
+}
+
+.redirect-badge {
+	display: inline-flex;
+	padding: 0.35rem 0.85rem;
+	font-size: 0.82rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	font-weight: 700;
+	border-radius: 999px;
+	margin-bottom: 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.24);
+	color: #d5e5ff;
+}
+
+.redirect-card h1 {
+	font-size: clamp(2rem, 4.5vw, 3rem);
+	line-height: 1.2;
+	margin-bottom: 1rem;
+}
+
+.redirect-card p {
+	color: #dbe6ff;
+	font-size: 1.05rem;
+	max-width: 620px;
+	margin: 0 auto;
+}
+
+.redirect-actions {
+	display: flex;
+	justify-content: center;
+	gap: 0.9rem;
+	flex-wrap: wrap;
+	margin: 1.8rem 0;
+}
+
+.redirect-points {
+	list-style: none;
+	display: grid;
+	gap: 0.55rem;
+	max-width: 430px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.redirect-points li {
+	position: relative;
+	padding-left: 1.2rem;
+	color: #d3e3ff;
+}
+
+.redirect-points li::before {
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #4f8dff;
+	position: absolute;
+	left: 0;
+	top: 0.55rem;
+}
+
 /* ======================== FOOTER======================== */
 footer {
 	text-align: center;
@@ -543,6 +645,11 @@ footer {
 	.contact-buttons a {
 		width: 100%;
 		max-width: 280px;
+	}
+
+	.redirect-actions a {
+		width: 100%;
+		max-width: 320px;
 	}
 
 @keyframes marquee {
