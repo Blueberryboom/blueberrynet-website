@@ -801,7 +801,7 @@ footer {
 		transform: translateY(-18px);
 	}
 	to {
-		transform: translateX(-100%);
+		transform: translateX(-18px);
 	}
 }
 
