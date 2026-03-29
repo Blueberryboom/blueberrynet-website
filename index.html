@@ -290,7 +290,7 @@
 
 /* SCROLL REVEAL */
 (() => {
-  const revealTargets = document.querySelectorAll('h1, h2, h3, p, .card, .stat, .btn-primary, .btn-secondary, .links a, .status-strip, footer .footer-inner > *');
+  const revealTargets = document.querySelectorAll('.section .section-title, .section .card, .section p, .section .btn-primary, .section .btn-secondary, .section .links a, .status-strip, .stat, footer .footer-inner > *');
   revealTargets.forEach((el) => el.classList.add('reveal'));
 
   const observer = new IntersectionObserver((entries) => {

@@ -153,7 +153,7 @@ body {
 
 .hero-text {
 	flex: 1;
-	animation: heroFadeFloat 0.95s ease both;
+	animation: heroFadeFloat 0.85s ease both;
 }
 
 .hero-text h1 {
@@ -672,41 +672,6 @@ footer {
 	}
 }
 
-.footer-inner {
-	display: grid;
-	justify-items: center;
-	gap: 0.9rem;
-}
-
-.footer-inner p {
-	color: var(--text-muted);
-	font-size: 0.95rem;
-}
-
-
-@media (min-width: 900px) {
-	.hamburger {
-		display: none;
-	}
-
-	.nav-links {
-		position: static;
-		display: flex;
-		align-items: center;
-		gap: 1.15rem;
-		padding: 0;
-		background: transparent;
-		border: 0;
-		opacity: 1;
-		pointer-events: auto;
-		transform: none;
-	}
-
-	.nav-links a {
-		padding: 0.35rem 0.5rem;
-	}
-}
-
 /* ======================== RESPONSIVE======================== */
 /* Tablets */
 @media (max-width: 1024px) {
@@ -798,10 +763,10 @@ footer {
 @keyframes heroFadeFloat {
 	from {
 		opacity: 0;
-		transform: translateY(-18px);
+		transform: translateY(-7px);
 	}
 	to {
-		transform: translateX(-18px);
+		transform: translateX(-100%);
 	}
 }
 
