@@ -203,21 +203,48 @@
   </div>
 </section>
 
-<section class="bmc-section">
-  <div class="container bmc-wrap">
-    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="blueberryboom" data-color="#FFDD00" data-emoji="☕" data-font="Inter" data-text="Buy us a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
-  </div>
-</section>
+
 
 <footer>
-  © 2026 Blueberry Network
+  <div class="container footer-inner">
+    <div class="bmc-wrap">
+      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="blueberryboom" data-color="#FFDD00" data-emoji="☕" data-font="Inter" data-text="Buy us a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
+    </div>
+    <p>© 2026 Blueberry Network</p>
+  </div>
 </footer>
 
 <script>
 /* NAV */
-document.getElementById('hamburger').onclick = () => {
-  document.getElementById('navLinks').classList.toggle('active');
-};
+(() => {
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('navLinks');
+  if (!hamburger || !nav) return;
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    hamburger.classList.toggle('open');
+  });
+
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      hamburger.classList.remove('open');
+    });
+  });
+})();
+
+/* TESTIMONIAL LOOP (duplicates via JS so markup stays single-source) */
+(() => {
+  const marquee = document.getElementById('testimonialsMarquee');
+  const track = document.getElementById('testimonialsTrack');
+  if (!marquee || !track) return;
+
+  const clone = track.cloneNode(true);
+  clone.id = '';
+  clone.setAttribute('aria-hidden', 'true');
+  marquee.appendChild(clone);
+})();
 
 /* TESTIMONIAL LOOP (duplicates via JS so markup stays single-source) */
 (() => {
@@ -268,6 +295,26 @@ document.getElementById('hamburger').onclick = () => {
   }, { threshold: 0.45 });
 
   stats.forEach((el) => observer.observe(el));
+})();
+
+/* SCROLL REVEAL */
+(() => {
+  const revealTargets = document.querySelectorAll('.section-title, .card, .contact-buttons a, .hero-buttons a, .stat');
+  revealTargets.forEach((el) => el.classList.add('reveal'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18 });
+
+  revealTargets.forEach((el, i) => {
+    el.style.setProperty('--reveal-delay', `${Math.min(i * 45, 320)}ms`);
+    observer.observe(el);
+  });
 })();
 
 /* MEMBER COUNTS */
