@@ -246,6 +246,18 @@
   marquee.appendChild(clone);
 })();
 
+/* TESTIMONIAL LOOP (duplicates via JS so markup stays single-source) */
+(() => {
+  const marquee = document.getElementById('testimonialsMarquee');
+  const track = document.getElementById('testimonialsTrack');
+  if (!marquee || !track) return;
+
+  const clone = track.cloneNode(true);
+  clone.id = '';
+  clone.setAttribute('aria-hidden', 'true');
+  marquee.appendChild(clone);
+})();
+
 /* COUNT-UP */
 (() => {
   const stats = document.querySelectorAll('.stat h2');

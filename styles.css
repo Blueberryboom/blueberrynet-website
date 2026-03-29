@@ -8,6 +8,9 @@
 	--radius: 6px;
 	--transition: 0.3s ease;
 	--max-width: 1200px;
+	--surface-gradient: linear-gradient(135deg, #3f3b9d 0%, #2056ac 52%, #0f6f94 100%);
+	--surface-border: rgba(255, 255, 255, 0.14);
+	--soft-shadow: 0 22px 44px rgba(6, 12, 28, 0.45);
 }
 
 /* ======================== BASE======================== */
@@ -653,6 +656,10 @@ footer {
 	.services .card-grid {
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 	}
+
+	.services .card-grid {
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	}
 }
 
 @media (max-width: 600px) {
@@ -683,7 +690,6 @@ footer {
 		width: 100%;
 		max-width: 320px;
 	}
-}
 
 
 .reveal {
@@ -723,8 +729,7 @@ footer {
 		transform: translateY(-18px);
 	}
 	to {
-		opacity: 1;
-		transform: translateY(0);
+		transform: translateX(-100%);
 	}
 }
 
