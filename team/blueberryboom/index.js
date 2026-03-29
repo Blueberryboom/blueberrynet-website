@@ -15,25 +15,23 @@
         </div>
 
         <aside class="owner-photo-shell" aria-label="Profile photo placeholder">
-          <div class="owner-photo-placeholder">
-            <span>Add Profile Photo</span>
-          </div>
+          <div class="owner-photo-placeholder">Add Profile Photo</div>
         </aside>
       </div>
     </section>
 
-    <section class="section owner-quote-section">
+    <section class="stats-strip owner-quote-section reveal">
       <div class="container">
         <article class="owner-quote-card">
           <h2>Favourite Quote</h2>
-          <p>\"Build the community you wish existed.\"</p>
+          <p>"Build the community you wish existed."</p>
         </article>
       </div>
     </section>
 
     <section class="section owner-about-section">
       <div class="container owner-profile-grid">
-        <article class="card owner-about-card">
+        <article class="card owner-about-card reveal">
           <h2>About Me</h2>
           <p>
             Hey! I’m Blueberryboom, owner of Blueberry Network. I spend most of my time planning
@@ -45,7 +43,7 @@
           </p>
         </article>
 
-        <article class="card owner-contact-card">
+        <article class="card owner-contact-card reveal">
           <h2>Contact</h2>
           <p>Want to collaborate, ask a question, or just say hi?</p>
           <div class="owner-contact-links">
@@ -56,4 +54,16 @@
       </div>
     </section>
   `;
+
+  const reveals = profileRoot.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16 });
+
+  reveals.forEach((el) => observer.observe(el));
 })();

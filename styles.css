@@ -801,7 +801,8 @@ footer {
 		transform: translateY(-18px);
 	}
 	to {
-		transform: translateX(-18px);
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
@@ -829,6 +830,7 @@ footer {
 	color: var(--text-muted);
 	text-decoration: none;
 	font-weight: 600;
+	transition: var(--transition);
 }
 
 .team-top-links a:hover {
@@ -839,39 +841,21 @@ footer {
 	padding-bottom: 3rem;
 }
 
-.team-hero {
-	padding-top: 5rem;
-	position: relative;
-	overflow: hidden;
+.team-landing-hero {
+	min-height: 70vh;
+	padding: 5.5rem 0 3rem;
+	background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.9)), url("https://github.com/Blueberryboom/blueberrynet-website/blob/main/assets/hero-img.png?raw=true") center/cover no-repeat;
 }
 
-.team-hero::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: radial-gradient(circle at 20% 0%, rgba(99, 102, 241, 0.26), transparent 40%),
-		radial-gradient(circle at 85% 15%, rgba(37, 164, 255, 0.2), transparent 42%);
-	pointer-events: none;
+.team-hero-wrapper,
+.owner-hero-grid {
+	align-items: center;
 }
 
-.team-hero-inner {
+.team-hero-copy {
 	max-width: 760px;
+	margin: 0 auto;
 	text-align: center;
-	position: relative;
-	z-index: 1;
-}
-
-.team-hero h1 {
-	font-size: clamp(2.2rem, 6vw, 4rem);
-	line-height: 1.15;
-	margin-bottom: 0.8rem;
-}
-
-.team-hero p {
-	color: #d7e4ff;
-	font-size: 1.05rem;
-	max-width: 620px;
-	margin: 0 auto 1.65rem;
 }
 
 .team-search-shell {
@@ -880,19 +864,16 @@ footer {
 	gap: 0.55rem;
 	width: min(560px, 100%);
 	margin: 0 auto;
-	padding: 0.9rem 1rem;
+	padding: 0.95rem 1.1rem;
 	border-radius: 14px;
-	background: rgba(19, 31, 52, 0.9);
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	color: #9ab2de;
-}
-
-.team-search-icon {
-	opacity: 0.8;
+	background: rgba(15, 23, 42, 0.68);
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	color: #c8d8f4;
+	backdrop-filter: blur(8px);
 }
 
 .team-list-section {
-	padding-top: 2.2rem;
+	padding-top: 3rem;
 }
 
 .team-section-kicker {
@@ -901,40 +882,36 @@ footer {
 }
 
 .team-list-card {
-	background: #131f36;
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	border-radius: 20px;
-	padding: 1.2rem;
 	display: flex;
 	justify-content: space-between;
-	gap: 1rem;
+	gap: 1.1rem;
 	align-items: center;
 }
 
 .team-list-card h2 {
-	font-size: 1.45rem;
-	margin-bottom: 0.25rem;
+	font-size: clamp(1.8rem, 4vw, 2.6rem);
+	margin-bottom: 0.3rem;
 }
 
 .team-list-card p {
 	color: #dbe6ff;
 }
 
-.owner-hero-section {
-	padding-top: 4.8rem;
+.owner-hero-surface {
+	min-height: auto;
+	padding: 4.8rem 0 2.4rem;
 }
 
 .owner-hero-grid {
 	display: grid;
-	grid-template-columns: 1.15fr 0.85fr;
+	grid-template-columns: 1.1fr 0.9fr;
 	gap: 1.4rem;
-	align-items: stretch;
 }
 
 .owner-hero-copy,
 .owner-photo-shell,
 .owner-quote-card {
-	background: #16253b;
+	background: rgba(22, 37, 59, 0.92);
 	border: 1px solid rgba(255, 255, 255, 0.13);
 	border-radius: 24px;
 	box-shadow: 0 18px 34px rgba(7, 13, 28, 0.4);
@@ -942,6 +919,7 @@ footer {
 
 .owner-hero-copy {
 	padding: clamp(1.4rem, 4.2vw, 2.4rem);
+	animation: heroFadeFloat 0.95s ease both;
 }
 
 .owner-hero-copy h1 {
@@ -953,22 +931,21 @@ footer {
 .owner-hero-copy p {
 	color: #dbe7ff;
 	font-size: 1.03rem;
+	margin-bottom: 0;
 }
 
 .owner-photo-shell {
-	padding: 0.8rem;
-	display: flex;
+	padding: 0.85rem;
 }
 
 .owner-photo-placeholder {
 	border-radius: 18px;
 	border: 1px dashed rgba(255, 255, 255, 0.3);
-	background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(37, 164, 255, 0.12));
+	background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(37, 164, 255, 0.16));
 	width: 100%;
-	min-height: 260px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	min-height: 280px;
+	display: grid;
+	place-items: center;
 	color: #c9dcff;
 	font-weight: 600;
 }
@@ -992,13 +969,18 @@ footer {
 }
 
 .owner-about-section {
-	padding-top: 1.8rem;
+	padding-top: 1.4rem;
 }
 
 .owner-profile-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 1rem;
+}
+
+.owner-about-card,
+.owner-contact-card {
+	background: #16253b;
 }
 
 .owner-about-card h2,
@@ -1021,6 +1003,11 @@ footer {
 		grid-template-columns: 1fr;
 		flex-direction: column;
 		align-items: flex-start;
+	}
+
+	.team-landing-hero {
+		min-height: 65vh;
+		padding-top: 4.8rem;
 	}
 
 	.team-top-links {
