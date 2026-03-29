@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the Team | Blueberry Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="logo team-logo-link" href="/">Blueberry Network</a>
+    <nav class="team-top-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/discord">Discord</a>
+    </nav>
+  </div>
+</header>
+
+<main class="team-page">
+  <section class="hero team-landing-hero">
+    <div class="container hero-wrapper team-hero-wrapper">
+      <div class="hero-text team-hero-copy reveal">
+        <span class="redirect-badge">Meet Our Team</span>
+        <h1>Find Your Next <span class="gradient-group">Great Teammate</span></h1>
+        <p>We are a small but growing crew of creators, moderators, and builders powering Blueberry Network.</p>
+
+        <div class="team-search-shell" role="search" aria-label="Team search placeholder">
+          <span class="team-search-icon" aria-hidden="true">⌕</span>
+          <span>Search team roles, names, and specialties...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section team-list-section">
+    <div class="container reveal">
+      <p class="team-section-kicker">1 highlighted profile</p>
+      <article class="team-list-card card">
+        <div>
+          <span class="status-strip">Owner</span>
+          <h2>Blueberryboom</h2>
+          <p>Founder and owner of Blueberry Network, focusing on community and project direction.</p>
+        </div>
+        <a class="btn-secondary" href="/team/blueberryboom">View Profile →</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p>© 2026 Blueberry Network</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16 });
+  reveals.forEach((el) => observer.observe(el));
+})();
+</script>
+</body>
+</html>
