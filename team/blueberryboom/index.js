@@ -16,6 +16,9 @@
       stats: '180 members',
       avatarClass: 'avatar-blue',
       initials: 'BB',
+      avatarUrl: 'https://cdn.discordapp.com/icons/1179546132834703470/79ec749f09cf27d6970374f6ceab7f4e.png?size=256',
+      inviteUrl: 'https://discord.gg/sKV2ze9HQv',
+      selected: true,
     },
     {
       name: 'BigHappySmiley',
@@ -25,31 +28,60 @@
       stats: '20 members',
       avatarClass: 'avatar-purple',
       initials: 'BHS',
+      avatarUrl: 'https://cdn.discordapp.com/icons/1014240118884689921/a_0caad5fb91505db1f05e535be2eafe62.gif?size=256',
+      inviteUrl: 'https://discord.gg/v2P5uY8PqJ',
+      selected: true,
     },
     {
       name: 'Coming soon...',
-      description: 'Server has beem excluded per the owners request.',
+      description: 'Server has been excluded per the owner\'s request.',
       role: 'ADMINISTRATOR',
       roleClass: 'role-admin',
-      stats: '66,684 online · 962,987 members',
+      stats: 'Private server',
       avatarClass: 'avatar-green',
       initials: '-',
+      avatarUrl: '',
+      inviteUrl: '',
+      selected: false,
     }
   ];
 
-  const cardsHtml = servers.map((server) => `
-    <article class="owner-server-card">
-      <div class="owner-server-head">
-        <span class="owner-server-avatar ${server.avatarClass}" aria-hidden="true">${server.initials}</span>
-        <div>
-          <h3>${server.name}</h3>
-          <p>${server.description}</p>
+  const selectedServers = servers.filter((server) => server.selected !== false);
+
+  const cardsHtml = selectedServers.map((server) => {
+    const avatarImage = server.avatarUrl
+      ? `<img class="owner-server-avatar-image" src="${server.avatarUrl}" alt="${server.name} icon" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">`
+      : '';
+
+    const fallbackDisplay = server.avatarUrl ? 'style="display:none;"' : '';
+    const joinAction = server.inviteUrl
+      ? `<a class="owner-server-join" href="${server.inviteUrl}" target="_blank" rel="noopener noreferrer" aria-label="Join ${server.name}">Join server</a>`
+      : '<span class="owner-server-join disabled" aria-disabled="true">Invite unavailable</span>';
+    const clickableClass = server.inviteUrl ? 'is-clickable' : '';
+    const inviteData = server.inviteUrl ? `data-invite-url="${server.inviteUrl}"` : '';
+
+    return `
+      <article class="owner-server-card ${clickableClass}" ${inviteData}>
+        <div class="owner-server-head">
+          <span class="owner-server-avatar ${server.avatarClass}" aria-hidden="true">
+            ${avatarImage}
+            <span class="owner-server-avatar-fallback" ${fallbackDisplay}>${server.initials}</span>
+          </span>
+          <div>
+            <h3>${server.name}</h3>
+            <p>${server.description}</p>
+          </div>
         </div>
-      </div>
-      <span class="owner-server-role ${server.roleClass}">${server.role}</span>
-      <p class="owner-server-stats"><span class="owner-server-dot" aria-hidden="true"></span>${server.stats}</p>
-    </article>
-  `).join('');
+        <span class="owner-server-role ${server.roleClass}">${server.role}</span>
+        <p class="owner-server-stats"><span class="owner-server-dot" aria-hidden="true"></span>${server.stats}</p>
+        <div class="owner-server-actions">${joinAction}</div>
+      </article>
+    `;
+  }).join('');
+
+  const emptyStateHtml = selectedServers.length
+    ? ''
+    : '<p class="blueberry-empty-servers">No selected servers are configured yet.</p>';
 
   profileRoot.innerHTML = `
     <section class="blueberry-scene" aria-label="Blueberryboom profile card">
@@ -72,9 +104,30 @@
 
         <section>
           <h2 class="blueberry-section-title">Servers I work in</h2>
+          ${emptyStateHtml}
           <div class="owner-servers-grid compact">${cardsHtml}</div>
         </section>
       </article>
     </section>
   `;
+
+  profileRoot.querySelectorAll('.owner-server-card[data-invite-url]').forEach((card) => {
+    const inviteUrl = card.getAttribute('data-invite-url');
+    if (!inviteUrl) return;
+
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      window.open(inviteUrl, '_blank', 'noopener,noreferrer');
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      window.open(inviteUrl, '_blank', 'noopener,noreferrer');
+    });
+
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'link');
+    card.setAttribute('aria-label', `Open invite for ${card.querySelector('h3')?.textContent || 'server'}`);
+  });
 })();
