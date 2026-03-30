@@ -2,192 +2,106 @@
   const profileRoot = document.getElementById('profileRoot');
   if (!profileRoot) return;
 
+  document.body.classList.add('blueberryboom-compact-page');
+
   const CUSTOM_PROFILE_PHOTO_URL = 'https://raw.githubusercontent.com/Blueberryboom/blueberrynet-website/refs/heads/main/assets/blueberryboom_profile.png';
   const CUSTOM_BANNER_URL = 'https://raw.githubusercontent.com/Blueberryboom/blueberrynet-website/refs/heads/main/assets/blueberryboom_banner.jpg';
 
+  const servers = [
+    {
+      name: 'The Staff Network',
+      description: 'The best server to search staff, work or improve your staff experience.',
+      role: 'OWNER',
+      roleClass: 'role-owner',
+      stats: '96 online · 517 members',
+      avatarClass: 'avatar-blue',
+      initials: 'TS',
+    },
+    {
+      name: 'The Hangout Hub',
+      description: 'The most active hangout server with around 1000 members.',
+      role: 'SR. MANAGER',
+      roleClass: 'role-manager',
+      stats: '93 online · 1,038 members',
+      avatarClass: 'avatar-purple',
+      initials: 'HH',
+    },
+    {
+      name: 'BeluGANG',
+      description: 'The official Beluga server.',
+      role: 'MODERATOR',
+      roleClass: 'role-mod',
+      stats: '66,684 online · 962,987 members',
+      avatarClass: 'avatar-green',
+      initials: 'BG',
+    },
+    {
+      name: 'Open Ads & Nitro',
+      description: 'The largest and most efficient advertising server on Discord.',
+      role: 'MODERATOR',
+      roleClass: 'role-mod',
+      stats: '1,731 online · 39,465 members',
+      avatarClass: 'avatar-lime',
+      initials: 'OA',
+    },
+    {
+      name: 'Ace Casters',
+      description: 'A small fishing server with lots of active fishers.',
+      role: 'ADMINISTRATOR',
+      roleClass: 'role-admin',
+      stats: '48 online · 457 members',
+      avatarClass: 'avatar-orange',
+      initials: 'AC',
+    },
+    {
+      name: "Adnan's Ace",
+      description: 'The support server for the best economy bot on Discord.',
+      role: 'SR. MODERATOR',
+      roleClass: 'role-srmod',
+      stats: '30 online · 202 members',
+      avatarClass: 'avatar-cyan',
+      initials: 'AA',
+    },
+  ];
+
+  const cardsHtml = servers.map((server) => `
+    <article class="owner-server-card">
+      <div class="owner-server-head">
+        <span class="owner-server-avatar ${server.avatarClass}" aria-hidden="true">${server.initials}</span>
+        <div>
+          <h3>${server.name}</h3>
+          <p>${server.description}</p>
+        </div>
+      </div>
+      <span class="owner-server-role ${server.roleClass}">${server.role}</span>
+      <p class="owner-server-stats"><span class="owner-server-dot" aria-hidden="true"></span>${server.stats}</p>
+    </article>
+  `).join('');
+
   profileRoot.innerHTML = `
-    <section class="section owner-hero-section">
-      <div class="container owner-hero-shell reveal">
-        <div class="owner-hero-copy">
-          <span class="status-strip">Owner</span>
-          <h1>Blueberryboom</h1>
-          <p>
-            Me = Blueberry?
-            I'm the owner of the Blueberry Network and a developer/coder! Swimming and gaming are my main hobbies. I also manage discord servers for free!
-          </p>
-          <div class="owner-hero-cta">
-            <a class="btn-primary" href="/discord">My Youtube</a>
-            <a class="btn-secondary" href="mailto:hello@blueberrynet.uk">Contact Me (email)</a>
+    <section class="blueberry-scene" aria-label="Blueberryboom profile card">
+      <div class="blueberry-scene-glow glow-one" aria-hidden="true"></div>
+      <div class="blueberry-scene-glow glow-two" aria-hidden="true"></div>
+      <div class="blueberry-scene-stars" aria-hidden="true"></div>
+
+      <article class="blueberry-profile-shell">
+        <a class="blueberry-back-btn" href="/team" aria-label="Go back to team page">← Back to team</a>
+
+        <div class="blueberry-profile-banner" style="background-image: linear-gradient(rgba(19, 29, 49, 0.2), rgba(8, 12, 22, 0.86)), url(${CUSTOM_BANNER_URL});"></div>
+
+        <div class="blueberry-profile-top">
+          <img class="blueberry-profile-photo" src="${CUSTOM_PROFILE_PHOTO_URL}" alt="Blueberryboom profile photo">
+          <div>
+            <h1>Blueberryboom</h1>
+            <p class="blueberry-profile-tag">Discord Moderator • Administrator • Developer</p>
           </div>
         </div>
 
-        <aside class="owner-hero-media" aria-label="Blueberryboom profile visuals">
-          <div class="owner-banner" role="img" aria-label="Blueberry themed banner image" style="background-image: linear-gradient(rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.7)), url(${CUSTOM_BANNER_URL});"></div>
-          <img class="owner-profile-photo" src="${CUSTOM_PROFILE_PHOTO_URL}" alt="Blueberryboom profile photo">
-        </aside>
-      </div>
-    </section>
-
-    <section class="section owner-quote-section reveal" id="ownerQuoteSection">
-      <canvas id="ownerQuoteConstellation" aria-hidden="true"></canvas>
-      <div class="container owner-quote-copy">
-        <p>“Difference is a thing to be proud of”</p>
-      </div>
-    </section>
-
-    <section class="section owner-servers-section">
-      <div class="container">
-        <h2 class="section-title reveal">Discord servers I work in</h2>
-        <div class="card-grid owner-servers-grid">
-          <article class="card reveal">
-            <h3>Blueberry Network</h3>
-            <p>Owner • Community planning, moderation systems, event direction, and roadmap coordination.</p>
-          </article>
-          <article class="card reveal">
-            <h3>Partner Communities</h3>
-            <p>Advisor • Server setup audits, growth strategy, onboarding polish, and engagement ideas.</p>
-          </article>
-          <article class="card reveal">
-            <h3>Minecraft Teams</h3>
-            <p>Project lead • Team communication workflows, release announcements, and cross-server collabs.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section owner-role-section">
-      <div class="container owner-role-grid">
-        <article class="card owner-role-card reveal">
-          <h2>My role in Blueberry Network</h2>
-          <ul>
-            <li>Set vision for community growth and long-term projects.</li>
-            <li>Support moderators/admins and keep operations smooth.</li>
-            <li>Plan launches, updates, and collaborations.</li>
-            <li>Keep the culture friendly, safe, and creative.</li>
-          </ul>
-        </article>
-
-        <article class="card owner-hire-card reveal">
-          <h2>Hire me / Contact</h2>
-          <p>
-            Need help with a Discord server, Minecraft community, or launch strategy?
-            I’m open to collaborations and consulting.
-          </p>
-          <div class="owner-contact-links">
-            <a class="btn-primary" href="/discord">Message on Discord</a>
-            <a class="btn-secondary" href="mailto:hello@blueberrynet.uk">Email Me</a>
-          </div>
-        </article>
-      </div>
+        <section>
+          <h2 class="blueberry-section-title">Servers I work in</h2>
+          <div class="owner-servers-grid compact">${cardsHtml}</div>
+        </section>
+      </article>
     </section>
   `;
-
-  const reveals = profileRoot.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.14 });
-
-  reveals.forEach((el, index) => {
-    el.style.setProperty('--reveal-delay', `${Math.min(index * 60, 280)}ms`);
-    observer.observe(el);
-  });
-
-  (() => {
-    const canvas = document.getElementById('ownerQuoteConstellation');
-    const section = document.getElementById('ownerQuoteSection');
-    if (!canvas || !section) return;
-
-    const ctx = canvas.getContext('2d');
-    let w = 0;
-    let h = 0;
-    let mouse = { x: -9999, y: -9999 };
-    const dots = Array.from({ length: 36 }, () => ({
-      x: 0,
-      y: 0,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-    }));
-
-    const resize = () => {
-      const rect = section.getBoundingClientRect();
-      w = canvas.width = rect.width;
-      h = canvas.height = section.offsetHeight;
-      dots.forEach((dot) => {
-        if (!dot.x && !dot.y) {
-          dot.x = Math.random() * w;
-          dot.y = Math.random() * h;
-        }
-      });
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-
-      for (let i = 0; i < dots.length; i += 1) {
-        const dot = dots[i];
-        const dx = dot.x - mouse.x;
-        const dy = dot.y - mouse.y;
-        const distance = Math.hypot(dx, dy);
-
-        if (distance < 120) {
-          const force = (120 - distance) / 120;
-          dot.vx += (dx / (distance || 1)) * force * 0.2;
-          dot.vy += (dy / (distance || 1)) * force * 0.2;
-        }
-
-        dot.vx *= 0.985;
-        dot.vy *= 0.985;
-        dot.x += dot.vx;
-        dot.y += dot.vy;
-
-        if (dot.x < 0 || dot.x > w) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > h) dot.vy *= -1;
-
-        dot.x = Math.max(0, Math.min(w, dot.x));
-        dot.y = Math.max(0, Math.min(h, dot.y));
-
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(146, 187, 255, 0.75)';
-        ctx.fill();
-
-        for (let j = i + 1; j < dots.length; j += 1) {
-          const dot2 = dots[j];
-          const lx = dot.x - dot2.x;
-          const ly = dot.y - dot2.y;
-          const lineDistance = Math.hypot(lx, ly);
-          if (lineDistance < 118) {
-            ctx.beginPath();
-            ctx.moveTo(dot.x, dot.y);
-            ctx.lineTo(dot2.x, dot2.y);
-            ctx.strokeStyle = `rgba(124, 167, 247, ${0.3 - (lineDistance / 118) * 0.22})`;
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(draw);
-    };
-
-    section.addEventListener('mousemove', (event) => {
-      const rect = section.getBoundingClientRect();
-      mouse = {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top,
-      };
-    });
-
-    section.addEventListener('mouseleave', () => {
-      mouse = { x: -9999, y: -9999 };
-    });
-
-    window.addEventListener('resize', resize);
-    resize();
-    requestAnimationFrame(draw);
-  })();
 })();
