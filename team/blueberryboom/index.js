@@ -9,18 +9,18 @@
           <span class="status-strip">Owner</span>
           <h1>Blueberryboom</h1>
           <p>
-            Building warm, fun Discord + Minecraft communities where people can hang out,
-            create memories, and ship cool ideas together.
+            Me = Blueberry?
+            I'm the owner of the Blueberry Network and a developer/coder! Swimming and gaming are my main hobbies. I also manage discord servers for free!
           </p>
           <div class="owner-hero-cta">
-            <a class="btn-primary" href="/discord">Join the Community</a>
-            <a class="btn-secondary" href="mailto:hello@blueberrynet.uk">Contact Me</a>
+            <a class="btn-primary" href="/discord">My Youtube</a>
+            <a class="btn-secondary" href="mailto:hello@blueberrynet.uk">Contact Me (email)</a>
           </div>
         </div>
 
         <aside class="owner-hero-media" aria-label="Blueberryboom profile visuals">
           <div class="owner-banner" role="img" aria-label="Blueberry themed banner image"></div>
-          <img class="owner-profile-photo" src="https://cdn.discordapp.com/embed/avatars/4.png" alt="Blueberryboom profile photo">
+          <img class="owner-profile-photo" src="https://raw.githubusercontent.com/Blueberryboom/blueberrynet-website/refs/heads/main/assets/blueberryboom_profile.png" alt="Blueberryboom profile photo">
         </aside>
       </div>
     </section>
