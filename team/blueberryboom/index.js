@@ -2,6 +2,9 @@
   const profileRoot = document.getElementById('profileRoot');
   if (!profileRoot) return;
 
+  const CUSTOM_PROFILE_PHOTO_URL = 'https://raw.githubusercontent.com/Blueberryboom/blueberrynet-website/refs/heads/main/assets/blueberryboom_profile.png';
+  const CUSTOM_BANNER_URL = 'https://raw.githubusercontent.com/Blueberryboom/blueberrynet-website/refs/heads/main/assets/blueberryboom_banner.jpg';
+
   profileRoot.innerHTML = `
     <section class="section owner-hero-section">
       <div class="container owner-hero-shell reveal">
@@ -19,8 +22,8 @@
         </div>
 
         <aside class="owner-hero-media" aria-label="Blueberryboom profile visuals">
-          <div class="owner-banner" role="img" aria-label="Blueberry themed banner image"></div>
-          <img class="owner-profile-photo" src="https://raw.githubusercontent.com/Blueberryboom/blueberrynet-website/refs/heads/main/assets/blueberryboom_profile.png" alt="Blueberryboom profile photo">
+          <div class="owner-banner" role="img" aria-label="Blueberry themed banner image" style="background-image: linear-gradient(rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.7)), url(${CUSTOM_BANNER_URL});"></div>
+          <img class="owner-profile-photo" src="${CUSTOM_PROFILE_PHOTO_URL}" alt="Blueberryboom profile photo">
         </aside>
       </div>
     </section>
