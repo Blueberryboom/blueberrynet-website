@@ -31,7 +31,7 @@
     <section class="section owner-quote-section reveal" id="ownerQuoteSection">
       <canvas id="ownerQuoteConstellation" aria-hidden="true"></canvas>
       <div class="container owner-quote-copy">
-        <p>“Build the community you wish existed — then invite everyone to help shape it.”</p>
+        <p>“Difference is a thing to be proud of”</p>
       </div>
     </section>
 
