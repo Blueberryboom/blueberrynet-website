@@ -253,6 +253,7 @@ body {
 }
 
 /* Responsive */
+
 @media (max-width: 900px) {
 	.stats-wrapper {
 		flex-direction: column;
@@ -1002,7 +1003,98 @@ footer {
 	padding-top: 3.2rem;
 }
 
-.owner-servers-grid .card,
+.owner-servers-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.8rem;
+}
+
+.owner-server-card {
+	background: linear-gradient(145deg, #1b2434, #171f2c);
+	border: 1px solid #2a3345;
+	padding: 1rem;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+	transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.owner-server-card:hover {
+	transform: translateY(-2px);
+	border-color: #3e4e6b;
+}
+
+.owner-server-head {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+}
+
+.owner-server-avatar {
+	width: 52px;
+	height: 52px;
+	border-radius: 16px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 800;
+	font-size: 0.82rem;
+	color: #f8fbff;
+	flex-shrink: 0;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.08);
+}
+
+.avatar-blue { background: radial-gradient(circle at 25% 20%, #5f7dff, #2b4bb0); }
+.avatar-purple { background: radial-gradient(circle at 25% 20%, #9475ff, #5531b8); }
+.avatar-green { background: radial-gradient(circle at 25% 20%, #58d184, #208754); }
+.avatar-lime { background: radial-gradient(circle at 25% 20%, #9be76f, #4fa539); }
+.avatar-orange { background: radial-gradient(circle at 25% 20%, #ffb066, #c6672b); }
+.avatar-cyan { background: radial-gradient(circle at 25% 20%, #5fd8ea, #2a7eaf); }
+
+.owner-server-card h3 {
+	margin: 0.1rem 0 0.28rem;
+	font-size: 1.2rem;
+}
+
+.owner-server-card p {
+	margin: 0;
+	font-size: 0.95rem;
+	color: #b5c3db;
+}
+
+.owner-server-role {
+	display: inline-flex;
+	margin-top: 0.72rem;
+	margin-bottom: 0.62rem;
+	padding: 0.21rem 0.62rem;
+	border-radius: 999px;
+	font-size: 0.74rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	border: 1px solid transparent;
+}
+
+.role-owner { color: #efabff; background: rgba(161, 76, 190, 0.24); border-color: rgba(211, 118, 248, 0.42); }
+.role-manager { color: #ffc781; background: rgba(182, 117, 50, 0.24); border-color: rgba(236, 166, 92, 0.36); }
+.role-mod,
+.role-moderator { color: #87e6a4; background: rgba(53, 145, 88, 0.23); border-color: rgba(110, 216, 152, 0.35); }
+.role-admin { color: #ff977c; background: rgba(177, 77, 55, 0.24); border-color: rgba(239, 121, 93, 0.35); }
+.role-srmod { color: #93a6ff; background: rgba(72, 95, 190, 0.28); border-color: rgba(126, 145, 241, 0.39); }
+
+.owner-server-stats {
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+	font-size: 0.92rem;
+	color: #96a9c8;
+}
+
+.owner-server-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #7be996;
+	box-shadow: 0 0 0 3px rgba(123, 233, 150, 0.15);
+}
+
 .owner-role-card,
 .owner-hire-card {
 	background: #16253b;
@@ -1064,6 +1156,12 @@ footer {
 	}
 }
 
+@media (max-width: 720px) {
+	.owner-servers-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
 @media (max-width: 900px) {
 	.owner-hero-shell,
 	.owner-role-grid,
@@ -1080,5 +1178,223 @@ footer {
 
 	.team-top-links {
 		display: none;
+	}
+}
+
+/* Blueberryboom compact profile page */
+body.blueberryboom-compact-page {
+	overflow: hidden;
+	background: #030712;
+}
+
+body.blueberryboom-compact-page .header,
+body.blueberryboom-compact-page footer {
+	display: none;
+}
+
+body.blueberryboom-compact-page #profileRoot.team-page {
+	padding-top: 0;
+}
+
+.blueberry-scene {
+	position: relative;
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	padding: 1.25rem;
+	overflow: hidden;
+	isolation: isolate;
+	background:
+		radial-gradient(circle at 18% 32%, rgba(36, 61, 169, 0.3), transparent 40%),
+		radial-gradient(circle at 80% 68%, rgba(25, 166, 156, 0.18), transparent 42%),
+		linear-gradient(180deg, #040816 0%, #03040b 100%);
+}
+
+.blueberry-scene-glow {
+	position: absolute;
+	border-radius: 50%;
+	filter: blur(16px);
+	opacity: 0.4;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.glow-one {
+	width: min(65vw, 880px);
+	height: min(65vw, 880px);
+	background: radial-gradient(circle, rgba(48, 73, 204, 0.55) 0%, rgba(48, 73, 204, 0) 70%);
+	left: -15vw;
+	top: -22vh;
+	animation: floatGlowOne 13s ease-in-out infinite;
+}
+
+.glow-two {
+	width: min(55vw, 760px);
+	height: min(55vw, 760px);
+	background: radial-gradient(circle, rgba(15, 170, 164, 0.35) 0%, rgba(15, 170, 164, 0) 68%);
+	right: -12vw;
+	bottom: -28vh;
+	animation: floatGlowTwo 15s ease-in-out infinite;
+}
+
+.blueberry-scene-stars {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-image:
+		radial-gradient(circle, rgba(255, 255, 255, 0.48) 0.8px, transparent 1.2px),
+		radial-gradient(circle, rgba(130, 164, 255, 0.38) 0.8px, transparent 1.6px);
+	background-size: 140px 140px, 220px 220px;
+	background-position: 0 0, 36px 52px;
+	animation: twinkleShift 24s linear infinite;
+}
+
+.blueberry-profile-shell {
+	position: relative;
+	z-index: 1;
+	width: min(100%, 700px);
+	max-height: calc(100vh - 2.5rem);
+	padding: 0.78rem;
+	border-radius: 14px;
+	background: rgba(24, 27, 34, 0.95);
+	border: 1px solid #2f3342;
+	box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6);
+	overflow: hidden;
+}
+
+.blueberry-back-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-size: 0.82rem;
+	color: #c6d8ff;
+	text-decoration: none;
+	padding: 0.35rem 0.6rem;
+	border-radius: 8px;
+	background: rgba(46, 57, 84, 0.65);
+	border: 1px solid rgba(113, 139, 206, 0.45);
+	margin-bottom: 0.5rem;
+}
+
+.blueberry-profile-banner {
+	height: 92px;
+	border-radius: 10px;
+	background-position: center;
+	background-size: cover;
+	border: 1px solid #3b4b67;
+}
+
+.blueberry-profile-top {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	padding: 0.6rem 0.2rem 0.4rem;
+}
+
+.blueberry-profile-photo {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 3px solid #202a3f;
+	background: #0d1423;
+}
+
+.blueberry-profile-top h1 {
+	font-size: 1.35rem;
+	margin: 0;
+}
+
+.blueberry-profile-tag {
+	margin: 0.18rem 0 0;
+	font-size: 0.8rem;
+	color: #8ea1ca;
+}
+
+.blueberry-section-title {
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #8f9ab2;
+	margin: 0.45rem 0 0.5rem;
+}
+
+.owner-servers-grid.compact {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.45rem;
+}
+
+.owner-servers-grid.compact .owner-server-card {
+	padding: 0.58rem;
+	border-radius: 8px;
+}
+
+.owner-servers-grid.compact .owner-server-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 11px;
+	font-size: 0.7rem;
+}
+
+.owner-servers-grid.compact .owner-server-card h3 {
+	font-size: 0.99rem;
+	margin: 0 0 0.12rem;
+}
+
+.owner-servers-grid.compact .owner-server-card p {
+	font-size: 0.75rem;
+	line-height: 1.4;
+}
+
+.owner-servers-grid.compact .owner-server-role {
+	margin-top: 0.42rem;
+	margin-bottom: 0.38rem;
+	font-size: 0.62rem;
+	padding: 0.16rem 0.44rem;
+}
+
+.owner-servers-grid.compact .owner-server-stats {
+	font-size: 0.71rem;
+	gap: 0.35rem;
+}
+
+.owner-servers-grid.compact .owner-server-dot {
+	width: 6px;
+	height: 6px;
+}
+
+@keyframes floatGlowOne {
+	0%, 100% { transform: translate3d(0, 0, 0); }
+	50% { transform: translate3d(26px, 18px, 0); }
+}
+
+@keyframes floatGlowTwo {
+	0%, 100% { transform: translate3d(0, 0, 0); }
+	50% { transform: translate3d(-24px, -18px, 0); }
+}
+
+@keyframes twinkleShift {
+	0% { transform: translateY(0); opacity: 0.65; }
+	50% { opacity: 0.95; }
+	100% { transform: translateY(-24px); opacity: 0.65; }
+}
+
+@media (max-width: 700px) {
+	.blueberry-profile-shell {
+		max-height: calc(100vh - 1rem);
+		padding: 0.65rem;
+	}
+
+	.owner-servers-grid.compact {
+		grid-template-columns: 1fr;
+	}
+
+	.blueberry-profile-banner {
+		height: 76px;
+	}
+
+	.blueberry-profile-photo {
+		width: 54px;
+		height: 54px;
 	}
 }
