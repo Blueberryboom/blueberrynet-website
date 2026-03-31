@@ -88,6 +88,7 @@
       <div class="blueberry-scene-glow glow-one" aria-hidden="true"></div>
       <div class="blueberry-scene-glow glow-two" aria-hidden="true"></div>
       <div class="blueberry-scene-stars" aria-hidden="true"></div>
+      <div class="blueberry-scene-constellations" aria-hidden="true"></div>
 
       <article class="blueberry-profile-shell">
         <a class="blueberry-back-btn" href="/team" aria-label="Go back to team page">← Back to team</a>
