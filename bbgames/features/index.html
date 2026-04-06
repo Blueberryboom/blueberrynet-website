@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BBGames Features | Blueberry Network</title>
+  <meta name="description" content="Full feature list for BBGames Discord bot.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="logo team-logo-link" href="/">Blueberry Network</a>
+    <nav class="team-top-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/bbgames">BBGames</a>
+      <a href="/discord">Discord</a>
+    </nav>
+  </div>
+</header>
+
+<main class="bbgames-page">
+  <section class="hero bbgames-features-hero">
+    <div class="container hero-wrapper bbgames-hero-wrapper">
+      <div class="hero-text bbgames-hero-copy reveal">
+        <span class="redirect-badge">BBGames</span>
+        <h1>Full <span class="gradient-group">Feature List</span></h1>
+        <p>Everything you need for moderation, engagement, support, games, and server growth in one bot.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bbgames-features-section">
+    <div class="container reveal">
+      <div class="card bbgames-features-card">
+        <h2>BBGames Full Feature List</h2>
+        <ul class="bbgames-feature-list">
+          <li>Welcome, leave, and boost messages (fully customizable as well as adding buttons)</li>
+          <li>Advanced giveaway system</li>
+          <li>TicTacToe (with AI levels)</li>
+          <li>Random fun commands, including <code>/coinflip</code>, <code>/dadjoke</code>, <code>/TicTacToe</code>, and <code>/dice</code></li>
+          <li>Cool counting system, with message protection, leaderboard system, and easy resetting</li>
+          <li>YouTube notifications</li>
+          <li>Easy-to-use permissions and settings system via <code>/config ...</code></li>
+          <li>Support system for bug reporting, etc via <code>/support</code></li>
+          <li>Sticky messages</li>
+          <li>Timed auto messages</li>
+          <li>Tags</li>
+          <li>Levelling</li>
+          <li>One word story</li>
+          <li>Achievements</li>
+          <li>AFK</li>
+          <li><code>/say</code> command</li>
+          <li>Tickets system (with workload measurement)</li>
+          <li>Rewards for members using your server tag</li>
+          <li><code>/purge</code></li>
+          <li>Logging</li>
+          <li><strong>+ New features added every few weeks :)</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-box reveal">
+      <h2>Want BBGames in your <span class="gradient-text">server</span>?</h2>
+      <p>Join our Discord for setup help, updates, and suggestions for future features.</p>
+      <div class="contact-buttons">
+        <a href="/discord" class="btn-primary">Join Discord</a>
+        <a href="/bbgames" class="btn-secondary">Back to BBGames</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p>© 2026 Blueberry Network</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16 });
+
+  reveals.forEach((el) => observer.observe(el));
+})();
+</script>
+</body>
+</html>
