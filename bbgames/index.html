@@ -42,6 +42,23 @@
     </div>
   </section>
 
+  <section class="stats-strip bbgames-stats-strip" aria-label="BBGames stats">
+    <div class="container stats-wrapper reveal">
+      <div class="stat">
+        <h2 data-target="80" data-suffix="+">0</h2>
+        <p>Community Servers</p>
+      </div>
+      <div class="stat">
+        <h2 data-target="35" data-suffix="+">0</h2>
+        <p>Commands</p>
+      </div>
+      <div class="stat">
+        <h2 data-target="99" data-suffix="%">0</h2>
+        <p>Bot Uptime Goal</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section bbgames-highlights">
     <div class="container reveal">
       <h2 class="section-title">Why servers choose BBGames</h2>
@@ -120,6 +137,53 @@
     </div>
   </section>
 
+  <section class="section testimonials bbgames-feedback" id="bbgamesFeedback">
+    <canvas id="bbgamesFeedbackConstellation" aria-hidden="true"></canvas>
+    <div class="container reveal">
+      <h2 class="section-title">Feedback from communities</h2>
+
+      <div class="testimonials-marquee" id="bbgamesTestimonialsMarquee">
+        <div class="testimonials-track" id="bbgamesTestimonialsTrack">
+          <div class="card">
+            <div class="profile">
+              <img src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Skyblock Central avatar">
+              <div>
+                <strong>Skyblock Central</strong>
+                <span>Gaming Community</span>
+                <small>2,400 members</small>
+              </div>
+            </div>
+            <p>"BBGames replaced 5 bots for us and onboarding is way smoother now."</p>
+          </div>
+
+          <div class="card">
+            <div class="profile">
+              <img src="https://cdn.discordapp.com/embed/avatars/4.png" alt="Night Owl Hub avatar">
+              <div>
+                <strong>Night Owl Hub</strong>
+                <span>Chill Community</span>
+                <small>980 members</small>
+              </div>
+            </div>
+            <p>"The games keep chat active daily, and moderation tools are easy for staff."</p>
+          </div>
+
+          <div class="card">
+            <div class="profile">
+              <img src="https://cdn.discordapp.com/embed/avatars/5.png" alt="Creator Lounge avatar">
+              <div>
+                <strong>Creator Lounge</strong>
+                <span>Content Server</span>
+                <small>1,720 members</small>
+              </div>
+            </div>
+            <p>"Setup was quick and support is responsive. Exactly what we wanted."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container contact-box reveal">
       <h2>Ready to upgrade your <span class="gradient-text">Discord server</span>?</h2>
@@ -169,6 +233,140 @@
   }, { threshold: 0.16 });
 
   reveals.forEach((el) => observer.observe(el));
+
+  const stats = document.querySelectorAll('.stat h2');
+  const animateCount = (el) => {
+    const target = Number(el.dataset.target || 0);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.floor(target * eased);
+      el.textContent = value + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = target + suffix;
+      }
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  if (stats.length) {
+    const statsObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.45 });
+
+    stats.forEach((el) => statsObserver.observe(el));
+  }
+
+  const marquee = document.getElementById('bbgamesTestimonialsMarquee');
+  const track = document.getElementById('bbgamesTestimonialsTrack');
+  if (marquee && track) {
+    const clone = track.cloneNode(true);
+    clone.id = '';
+    clone.setAttribute('aria-hidden', 'true');
+    marquee.appendChild(clone);
+  }
+
+  const canvas = document.getElementById('bbgamesFeedbackConstellation');
+  const section = document.getElementById('bbgamesFeedback');
+  if (canvas && section) {
+    const ctx = canvas.getContext('2d');
+    let w = 0;
+    let h = 0;
+    let mouse = { x: -9999, y: -9999 };
+    const dots = Array.from({ length: 42 }, () => ({
+      x: 0,
+      y: 0,
+      vx: (Math.random() - 0.5) * 0.55,
+      vy: (Math.random() - 0.5) * 0.55,
+    }));
+
+    const resize = () => {
+      const rect = section.getBoundingClientRect();
+      w = canvas.width = rect.width;
+      h = canvas.height = section.offsetHeight;
+      dots.forEach((d) => {
+        if (!d.x && !d.y) {
+          d.x = Math.random() * w;
+          d.y = Math.random() * h;
+        }
+      });
+    };
+
+    const step = () => {
+      ctx.clearRect(0, 0, w, h);
+
+      for (let i = 0; i < dots.length; i += 1) {
+        const d = dots[i];
+        const dx = d.x - mouse.x;
+        const dy = d.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 120) {
+          const force = (120 - dist) / 120;
+          d.vx += (dx / (dist || 1)) * force * 0.25;
+          d.vy += (dy / (dist || 1)) * force * 0.25;
+        }
+
+        d.vx *= 0.985;
+        d.vy *= 0.985;
+        d.x += d.vx;
+        d.y += d.vy;
+
+        if (d.x < 0 || d.x > w) d.vx *= -1;
+        if (d.y < 0 || d.y > h) d.vy *= -1;
+
+        d.x = Math.max(0, Math.min(w, d.x));
+        d.y = Math.max(0, Math.min(h, d.y));
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, 1.7, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(125, 162, 220, 0.75)';
+        ctx.fill();
+
+        for (let j = i + 1; j < dots.length; j += 1) {
+          const d2 = dots[j];
+          const lx = d.x - d2.x;
+          const ly = d.y - d2.y;
+          const ldist = Math.hypot(lx, ly);
+          if (ldist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(d.x, d.y);
+            ctx.lineTo(d2.x, d2.y);
+            ctx.strokeStyle = `rgba(106, 146, 230, ${0.26 - (ldist / 120) * 0.2})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(step);
+    };
+
+    section.addEventListener('mousemove', (e) => {
+      const rect = section.getBoundingClientRect();
+      mouse = { x: e.clientX - rect.left, y: e.clientY - rect.top + section.scrollTop };
+    });
+
+    section.addEventListener('mouseleave', () => {
+      mouse = { x: -9999, y: -9999 };
+    });
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(step);
+  }
 })();
 </script>
 </body>
