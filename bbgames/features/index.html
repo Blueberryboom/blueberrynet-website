@@ -11,19 +11,25 @@
 <body>
 <header class="header">
   <div class="container nav">
-    <a class="logo team-logo-link" href="/">Blueberry Network</a>
-    <nav class="team-top-links" aria-label="Main navigation">
+    <a class="logo" href="/">Blueberry Network</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
       <a href="/">Home</a>
       <a href="/bbgames">BBGames</a>
-      <a href="/discord">Discord</a>
+      <a href="/bbgames/features">Features</a>
+      <a href="/discord" class="btn-nav">Discord</a>
     </nav>
   </div>
 </header>
 
 <main class="bbgames-page">
-  <section class="hero bbgames-features-hero">
-    <div class="container hero-wrapper bbgames-hero-wrapper">
-      <div class="hero-text bbgames-hero-copy reveal">
+  <section class="hero">
+    <div class="container hero-wrapper">
+      <div class="hero-text reveal">
         <span class="redirect-badge">BBGames</span>
         <h1>Full <span class="gradient-group">Feature List</span></h1>
         <p>Everything you need for moderation, engagement, support, games, and server growth in one bot.</p>
@@ -91,6 +97,24 @@
 
 <script>
 (() => {
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('navLinks');
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const open = nav.classList.toggle('active');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
