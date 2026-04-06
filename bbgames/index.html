@@ -11,19 +11,25 @@
 <body>
 <header class="header">
   <div class="container nav">
-    <a class="logo team-logo-link" href="/">Blueberry Network</a>
-    <nav class="team-top-links" aria-label="Main navigation">
+    <a class="logo" href="/">Blueberry Network</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
       <a href="/">Home</a>
-      <a href="/discord">Discord</a>
+      <a href="/bbgames">BBGames</a>
       <a href="/bbgames/features">Features</a>
+      <a href="/discord" class="btn-nav">Discord</a>
     </nav>
   </div>
 </header>
 
 <main class="bbgames-page">
-  <section class="hero bbgames-hero">
-    <div class="container hero-wrapper bbgames-hero-wrapper">
-      <div class="hero-text bbgames-hero-copy reveal">
+  <section class="hero">
+    <div class="container hero-wrapper">
+      <div class="hero-text reveal">
         <span class="redirect-badge">Discord Bot</span>
         <h1>Meet <span class="gradient-group">BBGames</span></h1>
         <p>A powerful all-in-one Discord bot for community fun, server management, events, and engagement.</p>
@@ -56,6 +62,64 @@
     </div>
   </section>
 
+  <section class="section bbgames-showcase">
+    <div class="container bbgames-showcase-grid">
+      <article class="bbgames-showcase-item reveal">
+        <div class="bbgames-showcase-copy">
+          <h3>Custom onboarding flows</h3>
+          <p>Welcome and verify new members with polished messages, auto-assigned roles, and onboarding prompts that match your community's tone.</p>
+          <ul>
+            <li>Personalized welcome and leave embeds</li>
+            <li>Button-ready call-to-actions for rules and channels</li>
+            <li>Simple setup through slash commands</li>
+          </ul>
+        </div>
+        <div class="bbgames-showcase-visual" aria-hidden="true">
+          <div class="mock-line lg"></div>
+          <div class="mock-line"></div>
+          <div class="mock-pills">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="bbgames-showcase-item bbgames-showcase-item-reverse reveal">
+        <div class="bbgames-showcase-copy">
+          <h3>Moderation without the chaos</h3>
+          <p>Give your staff practical controls for logs, tickets, and day-to-day moderation with organized tools designed for active Discord servers.</p>
+          <ul>
+            <li>Centralized logs for key server actions</li>
+            <li>Ticket workflows with workload tracking</li>
+            <li>Fast utility commands like <code>/purge</code> and <code>/say</code></li>
+          </ul>
+        </div>
+        <div class="bbgames-showcase-visual" aria-hidden="true">
+          <div class="mock-card"></div>
+          <div class="mock-card small"></div>
+          <div class="mock-card tiny"></div>
+        </div>
+      </article>
+
+      <article class="bbgames-showcase-item reveal">
+        <div class="bbgames-showcase-copy">
+          <h3>Built-in games and community loops</h3>
+          <p>Keep your server active with lightweight games and repeatable engagement systems that bring people back every day.</p>
+          <ul>
+            <li>TicTacToe, dice, dad jokes, and coin flips</li>
+            <li>Levelling, achievements, and one-word story games</li>
+            <li>Timed messages and recurring activity prompts</li>
+          </ul>
+        </div>
+        <div class="bbgames-showcase-visual" aria-hidden="true">
+          <div class="mock-chart">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="mock-line"></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container contact-box reveal">
       <h2>Ready to upgrade your <span class="gradient-text">Discord server</span>?</h2>
@@ -76,6 +140,24 @@
 
 <script>
 (() => {
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('navLinks');
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const open = nav.classList.toggle('active');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

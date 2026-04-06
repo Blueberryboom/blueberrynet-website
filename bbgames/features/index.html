@@ -11,19 +11,25 @@
 <body>
 <header class="header">
   <div class="container nav">
-    <a class="logo team-logo-link" href="/">Blueberry Network</a>
-    <nav class="team-top-links" aria-label="Main navigation">
+    <a class="logo" href="/">Blueberry Network</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
       <a href="/">Home</a>
       <a href="/bbgames">BBGames</a>
-      <a href="/discord">Discord</a>
+      <a href="/bbgames/features">Features</a>
+      <a href="/discord" class="btn-nav">Discord</a>
     </nav>
   </div>
 </header>
 
 <main class="bbgames-page">
-  <section class="hero bbgames-features-hero">
-    <div class="container hero-wrapper bbgames-hero-wrapper">
-      <div class="hero-text bbgames-hero-copy reveal">
+  <section class="hero">
+    <div class="container hero-wrapper">
+      <div class="hero-text reveal">
         <span class="redirect-badge">BBGames</span>
         <h1>Full <span class="gradient-group">Feature List</span></h1>
         <p>Everything you need for moderation, engagement, support, games, and server growth in one bot.</p>
@@ -33,31 +39,40 @@
 
   <section class="section bbgames-features-section">
     <div class="container reveal">
-      <div class="card bbgames-features-card">
-        <h2>BBGames Full Feature List</h2>
-        <ul class="bbgames-feature-list">
-          <li>Welcome, leave, and boost messages (fully customizable as well as adding buttons)</li>
-          <li>Advanced giveaway system</li>
-          <li>TicTacToe (with AI levels)</li>
-          <li>Random fun commands, including <code>/coinflip</code>, <code>/dadjoke</code>, <code>/TicTacToe</code>, and <code>/dice</code></li>
-          <li>Cool counting system, with message protection, leaderboard system, and easy resetting</li>
-          <li>YouTube notifications</li>
-          <li>Easy-to-use permissions and settings system via <code>/config ...</code></li>
-          <li>Support system for bug reporting, etc via <code>/support</code></li>
-          <li>Sticky messages</li>
-          <li>Timed auto messages</li>
-          <li>Tags</li>
-          <li>Levelling</li>
-          <li>One word story</li>
-          <li>Achievements</li>
-          <li>AFK</li>
-          <li><code>/say</code> command</li>
-          <li>Tickets system (with workload measurement)</li>
-          <li>Rewards for members using your server tag</li>
-          <li><code>/purge</code></li>
-          <li>Logging</li>
-          <li><strong>+ New features added every few weeks :)</strong></li>
-        </ul>
+      <div class="bbgames-feature-layout">
+        <article class="card bbgames-features-card bbgames-feature-panel">
+          <h2>Community management</h2>
+          <ul class="bbgames-feature-list">
+            <li>Welcome, leave, and boost messages with customizable buttons</li>
+            <li>Easy-to-use permissions and settings through <code>/config ...</code></li>
+            <li>Support system for bug reporting via <code>/support</code></li>
+            <li>Sticky messages and timed auto messages</li>
+            <li>Tickets system with workload measurement</li>
+            <li>Rewards for members using your server tag</li>
+          </ul>
+        </article>
+
+        <article class="card bbgames-features-card bbgames-feature-panel">
+          <h2>Fun and engagement</h2>
+          <ul class="bbgames-feature-list">
+            <li>Advanced giveaway system for events and milestones</li>
+            <li>TicTacToe with adjustable AI levels</li>
+            <li>Random commands like <code>/coinflip</code>, <code>/dadjoke</code>, <code>/TicTacToe</code>, and <code>/dice</code></li>
+            <li>Levelling, achievements, AFK, and one-word story</li>
+            <li>Tags and lightweight role-play/community interactions</li>
+          </ul>
+        </article>
+
+        <article class="card bbgames-features-card bbgames-feature-panel">
+          <h2>Server operations</h2>
+          <ul class="bbgames-feature-list">
+            <li>Counting system with protection, leaderboard support, and reset controls</li>
+            <li>YouTube notifications for creators and community updates</li>
+            <li>Moderation and utility actions like <code>/purge</code> and <code>/say</code></li>
+            <li>Logging to track key server events</li>
+            <li><strong>New features are added every few weeks</strong></li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
@@ -82,6 +97,24 @@
 
 <script>
 (() => {
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('navLinks');
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const open = nav.classList.toggle('active');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
