@@ -58,6 +58,14 @@ body {
 	letter-spacing: 0.02em;
 }
 
+a.logo,
+a.logo:visited,
+a.logo:hover,
+a.logo:active {
+	color: inherit;
+	text-decoration: none;
+}
+
 /* Nav links */
 .nav-links {
 	position: absolute;
