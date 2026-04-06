@@ -56,6 +56,17 @@ body {
 	font-weight: 800;
 	font-size: 1.15rem;
 	letter-spacing: 0.02em;
+	color: var(--text);
+	text-decoration: none !important;
+}
+
+a.logo:link,
+a.logo:visited,
+a.logo:hover,
+a.logo:active,
+a.logo:focus-visible {
+	color: var(--text) !important;
+	text-decoration: none !important;
 }
 
 /* Nav links */
