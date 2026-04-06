@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BBGames | Blueberry Network</title>
+  <meta name="description" content="BBGames is a multi-purpose Discord bot from Blueberry Network packed with games, moderation, utility, and community tools.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="logo team-logo-link" href="/">Blueberry Network</a>
+    <nav class="team-top-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/discord">Discord</a>
+      <a href="/bbgames/features">Features</a>
+    </nav>
+  </div>
+</header>
+
+<main class="bbgames-page">
+  <section class="hero bbgames-hero">
+    <div class="container hero-wrapper bbgames-hero-wrapper">
+      <div class="hero-text bbgames-hero-copy reveal">
+        <span class="redirect-badge">Discord Bot</span>
+        <h1>Meet <span class="gradient-group">BBGames</span></h1>
+        <p>A powerful all-in-one Discord bot for community fun, server management, events, and engagement.</p>
+
+        <div class="hero-buttons">
+          <a href="/bbgames/features" class="btn-primary">View Full Feature List</a>
+          <a href="/discord" class="btn-secondary">Join Community Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bbgames-highlights">
+    <div class="container reveal">
+      <h2 class="section-title">Why servers choose BBGames</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Built for communities</h3>
+          <p>Handle welcome flows, moderation, support, logging, and utility commands from one bot.</p>
+        </article>
+        <article class="card">
+          <h3>Fun without clutter</h3>
+          <p>Games and fun commands like TicTacToe, dice, and coinflip keep your members active.</p>
+        </article>
+        <article class="card">
+          <h3>Always evolving</h3>
+          <p>New features are added every few weeks, so your server keeps getting better over time.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-box reveal">
+      <h2>Ready to upgrade your <span class="gradient-text">Discord server</span>?</h2>
+      <p>Explore every capability of BBGames and see how it can replace a stack of separate bots.</p>
+      <div class="contact-buttons">
+        <a href="/bbgames/features" class="btn-primary">Browse Features</a>
+        <a href="/discord" class="btn-secondary">Get Support</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p>© 2026 Blueberry Network</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16 });
+
+  reveals.forEach((el) => observer.observe(el));
+})();
+</script>
+</body>
+</html>
